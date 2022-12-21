@@ -58,23 +58,23 @@ export const getStaticProps = async () => {
     }
 
     // Get unique universities
-    if (years.indexOf(record.university) === -1) {
+    if (universities.indexOf(record.university) === -1) {
       universities.push(record.university);
     }
 
     // Get unique schools
-    if (years.indexOf(record.school) === -1) {
+    if (schools.indexOf(record.school) === -1) {
       schools.push(record.school);
     }
 
     // Get unique degrees
-    if (years.indexOf(record.degree) === -1) {
+    if (degrees.indexOf(record.degree) === -1) {
       degrees.push(record.degree);
     }
   })
 
   return {
-    props: { records: records, years: years }
+    props: { records: records, years: years, universities: universities, schools: schools, degrees: degrees }
   };
 }
 
