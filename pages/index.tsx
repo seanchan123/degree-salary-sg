@@ -33,9 +33,13 @@ type dataStore = {
 }
 
 export const getStaticProps = async () => {
-  // Fetch 0 latest record
-  var result = await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=0&sort=year desc');
-  var data = await result.json();
+  // Fetch latest data
+  var latestData: dataStore = await(await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=0&sort=year desc')).json();
+
+  // Fetch oldest data
+  var oldestData: dataStore = await(await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=0')).json();
+
+  var data: dataStore = await result.json();
 
   return {
     props: { dataSet: data }
