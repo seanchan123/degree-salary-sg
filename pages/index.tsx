@@ -39,15 +39,13 @@ export const getStaticProps = async () => {
   var schools: string[] = [];
   var degrees: string[] = [];
 
-  // Fetch oldest data
-  var oldestData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=1')).json();
 
   // Fetch latest data
   var latestData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=1&sort=year desc')).json();
 
   // Fetch all data based on previous query
-  const totalRecords: number = oldestData.result.total;
-  var allData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=' + totalRecords + '&sort=year desc')).json();
+  const totalRecords: number = latestData.result.total;
+  var allData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=' + totalRecords)).json();
   var records: dataStore["result"]["records"] = allData.result.records;
 
   // Get unique data for filtering
@@ -74,11 +72,12 @@ export const getStaticProps = async () => {
   })
 
   return {
-    props: { records: records, years: years, universities: universities, schools: schools, degrees: degrees }
+    props: { records: records, fields: fields, years: years, universities: universities, schools: schools, degrees: degrees }
   };
 }
 
-const Test = ({ records, years, universities, schools, degrees }: { records: dataStore, years: string[], universities: string[], schools: string[], degrees: string[] }) => {
+const Test = ({ records, fields, years, universities, schools, degrees }: { records: dataStore, fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
+  console.log(fields);
   console.log(years);
   console.log(universities);
   console.log(schools);
