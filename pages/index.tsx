@@ -35,6 +35,15 @@ type dataStore = {
   year: number[]
 }
 
+const colors: string[] = [
+  "rgba(230, 25, 27, 1)",
+  "rgba(245, 130, 49, 1)",
+  "rgba(255, 225, 25, 1)",
+  "rgba(60, 180, 75, 1)",
+  "rgba(66, 99, 216, 1)",
+  "rgba(240, 50, 230, 1)"
+]
+
 export const getStaticProps = async () => {
   // Variables for filter
   var years: string[] = [];
@@ -129,14 +138,14 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
         data: records.map(record => { 
           return { x: record[fields[0] as keyof dataRecord], y: record[fields[1] as keyof dataRecord] }
         }),
-        backgroundColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: colors[0],
       },
       {
         label: 'Employment Rate Full Time',
         data: records.map(record => { 
           return { x: record[fields[0] as keyof dataRecord], y: record[fields[2] as keyof dataRecord] }
         }),
-        backgroundColor: 'rgba(0, 99, 132, 1)',
+        backgroundColor: colors[1],
       },
     ],
   };
