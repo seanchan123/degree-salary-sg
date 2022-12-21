@@ -2,26 +2,28 @@ import Head from 'next/head';
 import { Scatter } from 'react-chartjs-2';
 import { Chart, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
+type dataRecord = {
+  basic_monthly_mean: string,
+  basic_monthly_median: string,
+  degree: string,
+  employment_rate_ft_perm: string,
+  employment_rate_overall: string,
+  gross_monthly_mean: string,
+  gross_monthly_median: string,
+  gross_mthly_25_percentile: string,
+  gross_mthly_75_percentile: string,
+  school: string,
+  university: string,
+  year: string,
+  _id: number
+};
+
 type dataStore = {
   help: string,
   result: {
     fields: { type: string, id: string }[],
     limit: number,
-    records: {
-      basic_monthly_mean: string,
-      basic_monthly_median: string,
-      degree: string,
-      employment_rate_ft_perm: string,
-      employment_rate_overall: string,
-      gross_monthly_mean: string,
-      gross_monthly_median: string,
-      gross_mthly_25_percentile: string,
-      gross_mthly_75_percentile: string,
-      school: string,
-      university: string,
-      year: string,
-      _id: number
-    }[],
+    records: dataRecord[],
     resource_id: string,
     sort: string,
     total: number,
@@ -103,7 +105,7 @@ export const getStaticProps = async () => {
   };
 }
 
-const Test = ({ records, fields, years, universities, schools, degrees }: { records: dataStore["result"]["records"], fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
+const Test = ({ records, fields, years, universities, schools, degrees }: { records: dataRecord[], fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
   
   // console.log(fields);
   // console.log(years);
@@ -118,7 +120,7 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
       {
         label: 'Employment Rate Overall',
         data: records.map(record => { 
-          return { x: record.year, y: record.employment_rate_overall }
+          return { x: record[fields[0] as keyof dataRecord], y: record.employment_rate_overall }
         }),
         backgroundColor: 'rgba(255, 99, 132, 1)',
       },
@@ -132,7 +134,7 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
     ],
   };
 
-  console.log(data);
+  console.log(fields[0]);
 
   return (
     <>
