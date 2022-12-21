@@ -39,6 +39,8 @@ export const getStaticProps = async () => {
   var schools: string[] = [];
   var degrees: string[] = [];
 
+  // Variables for fields
+  var fields: string[] = [];
 
   // Fetch latest data
   var latestData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=1&sort=year desc')).json();
@@ -70,6 +72,32 @@ export const getStaticProps = async () => {
       degrees.push(record.degree);
     }
   })
+
+  // Get fields that can be measured in x-y axe
+  /* 
+      #0:   _id
+      #1:   year
+      #2:   university
+      #3:   school
+      #4:   degree
+      #5:   employment_rate_overall
+      #6:   employment_rate_ft_perm
+      #7:   basic_monthly_mean
+      #8:   basic_monthly_median
+      #9:   gross_monthly_mean
+      #10:  gross_monthly_median
+      #11:  gross_mthly_25_percentile
+      #12:  gross_mthly_75_percentile
+  */
+  fields.push(allData.result.fields[1].id);
+  fields.push(allData.result.fields[5].id);
+  fields.push(allData.result.fields[6].id);
+  fields.push(allData.result.fields[7].id);
+  fields.push(allData.result.fields[8].id);
+  fields.push(allData.result.fields[9].id);
+  fields.push(allData.result.fields[10].id);
+  fields.push(allData.result.fields[11].id);
+  fields.push(allData.result.fields[12].id);
 
   return {
     props: { records: records, fields: fields, years: years, universities: universities, schools: schools, degrees: degrees }
