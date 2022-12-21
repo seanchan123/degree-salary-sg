@@ -33,20 +33,25 @@ type dataStore = {
 }
 
 export const getStaticProps = async () => {
-  // Fetch latest data
-  var latestData: dataStore = await(await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=0&sort=year desc')).json();
-
   // Fetch oldest data
-  var oldestData: dataStore = await(await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=0')).json();
+  var oldestData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=0')).json();
 
-  var data: dataStore = await result.json();
+  // Fetch latest data
+  var latestData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=0&sort=year desc')).json();
+  
+  // Get all available years based on data
+  var years: number[] = [];
+  for (let currentYear: number = parseInt(oldestData.result.records[0].year); currentYear < parseInt(latestData.result.records[0].year); currentYear++) {
+    years.push(currentYear);
+  }
+  
 
   return {
-    props: { dataSet: data }
+    props: { dataSet: data, availableYears: years }
   };
 }
 
-const Test = ({ dataSet }: { dataSet: dataStore }) => {
+const Test = ({ dataSet, availableYears }: { dataSet: dataStore, availableYears: number[] }) => {
   console.log(dataSet);
   return (
     <>
