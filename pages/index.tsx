@@ -1,4 +1,6 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import { Scatter } from 'react-chartjs-2';
+import { Chart, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
 type dataStore = {
   help: string,
@@ -101,12 +103,37 @@ export const getStaticProps = async () => {
   };
 }
 
-const Test = ({ records, fields, years, universities, schools, degrees }: { records: dataStore, fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
-  console.log(fields);
-  console.log(years);
-  console.log(universities);
-  console.log(schools);
-  console.log(degrees);
+const Test = ({ records, fields, years, universities, schools, degrees }: { records: dataStore["result"]["records"], fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
+  
+  // console.log(fields);
+  // console.log(years);
+  // console.log(universities);
+  // console.log(schools);
+  // console.log(degrees);
+  
+  Chart.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
+
+  const data = {
+    datasets: [
+      {
+        label: 'Employment Rate Overall',
+        data: records.map(record => { 
+          return { x: record.year, y: record.employment_rate_overall }
+        }),
+        backgroundColor: 'rgba(255, 99, 132, 1)',
+      },
+      {
+        label: 'Employment Rate Full Time',
+        data: records.map(record => { 
+          return { x: record.year, y: record.employment_rate_ft_perm }
+        }),
+        backgroundColor: 'rgba(0, 99, 132, 1)',
+      },
+    ],
+  };
+
+  console.log(data);
+
   return (
     <>
       <Head>
@@ -117,8 +144,7 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
       </Head>
       <main>
         <div>
-          <h1 className="text-3xl font-bold underline">
-          </h1>
+          <Scatter data={data} />
         </div>
       </main>
     </>
