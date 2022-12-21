@@ -41,7 +41,7 @@ export const getStaticProps = async () => {
   
   // Get all available years based on data
   var years: number[] = [];
-  for (let currentYear: number = parseInt(oldestData.result.records[0].year); currentYear < parseInt(latestData.result.records[0].year); currentYear++) {
+  for (let currentYear: number = parseInt(oldestData.result.records[0].year); currentYear <= parseInt(latestData.result.records[0].year); currentYear++) {
     years.push(currentYear);
   }
   
