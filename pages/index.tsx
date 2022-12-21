@@ -117,7 +117,7 @@ export const getStaticProps = async () => {
 }
 
 const Test = ({ records, fields, years, universities, schools, degrees }: { records: dataRecord[], fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
-  
+
   /*
       fields index values: 
       #0:   year
@@ -132,23 +132,23 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
   */
 
   const data = {
-    datasets: [
-      {
-        label: 'Employment Rate Overall',
-        data: records.map(record => { 
-          return { x: record[fields[0] as keyof dataRecord], y: record[fields[1] as keyof dataRecord] }
-        }),
-        backgroundColor: colors[0],
-      },
-      {
-        label: 'Employment Rate Full Time',
-        data: records.map(record => { 
-          return { x: record[fields[0] as keyof dataRecord], y: record[fields[2] as keyof dataRecord] }
-        }),
-        backgroundColor: colors[1],
-      },
-    ],
+    datasets:
+      universities.map(university => {
+        return {
+          label: university,
+          data: records.filter(record => {
+            if (record.university == university) {
+              return true;
+            }
+          }).map(record => {
+            return { x: record[fields[0] as keyof dataRecord], y: record[fields[1] as keyof dataRecord] }
+          }),
+          backgroundColor: colors[universities.indexOf(university)]
+        }
+      })
   };
+
+  console.log(data);
 
   return (
     <>
