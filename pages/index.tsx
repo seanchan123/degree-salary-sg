@@ -33,6 +33,8 @@ type dataStore = {
 }
 
 export const getStaticProps = async () => {
+  // Variables for filter
+  var years: string[] = [];
   // Fetch oldest data
   var oldestData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=1')).json();
 
@@ -42,12 +44,16 @@ export const getStaticProps = async () => {
   // Fetch all data based on previous query
   const totalRecords: number = oldestData.result.total;
   var allData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=' + totalRecords + '&sort=year desc')).json();
+  var records: dataStore["result"]["records"] = allData.result.records;
 
-  // Get all available years based on data
-  var years: number[] = [];
-  for (let currentYear: number = parseInt(oldestData.result.records[0].year); currentYear <= parseInt(latestData.result.records[0].year); currentYear++) {
-    years.push(currentYear);
-  }
+  // Get unique data for filtering
+  records.map(record => {
+    // Get unique years
+    if (years.indexOf(record.year) === -1) {
+      years.push(record.year);
+    }
+
+  })
 
   return {
     props: { dataSet: allData, availableYears: years }
