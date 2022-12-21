@@ -35,6 +35,10 @@ type dataStore = {
 export const getStaticProps = async () => {
   // Variables for filter
   var years: string[] = [];
+  var universities: string[] = [];
+  var schools: string[] = [];
+  var degrees: string[] = [];
+
   // Fetch oldest data
   var oldestData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=1')).json();
 
@@ -53,6 +57,20 @@ export const getStaticProps = async () => {
       years.push(record.year);
     }
 
+    // Get unique universities
+    if (years.indexOf(record.university) === -1) {
+      universities.push(record.university);
+    }
+    
+    // Get unique schools
+    if (years.indexOf(record.school) === -1) {
+      schools.push(record.school);
+    }
+    
+    // Get unique degrees
+    if (years.indexOf(record.degree) === -1) {
+      degrees.push(record.degree);
+    }
   })
 
   return {
