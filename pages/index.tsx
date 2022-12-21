@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import { Scatter } from 'react-chartjs-2';
-import { Chart, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
+import { Bar, Scatter } from 'react-chartjs-2';
+import { Chart, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
-Chart.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
+Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend);
 
 type dataRecord = {
   basic_monthly_mean: string,
@@ -141,14 +141,12 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
               return true;
             }
           }).map(record => {
-            return { x: record[fields[0] as keyof dataRecord], y: record[fields[1] as keyof dataRecord] }
+            return { x: record[fields[0] as keyof dataRecord], y: record[fields[5] as keyof dataRecord] }
           }),
           backgroundColor: colors[universities.indexOf(university)]
         }
       })
   };
-
-  console.log(data);
 
   return (
     <>
@@ -160,7 +158,8 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
       </Head>
       <main>
         <div>
-          <Scatter data={data} />
+          <Bar data={data} />
+          {/* <Scatter data={data} /> */}
         </div>
       </main>
     </>
