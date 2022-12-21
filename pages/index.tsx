@@ -61,12 +61,12 @@ export const getStaticProps = async () => {
     if (years.indexOf(record.university) === -1) {
       universities.push(record.university);
     }
-    
+
     // Get unique schools
     if (years.indexOf(record.school) === -1) {
       schools.push(record.school);
     }
-    
+
     // Get unique degrees
     if (years.indexOf(record.degree) === -1) {
       degrees.push(record.degree);
@@ -74,13 +74,15 @@ export const getStaticProps = async () => {
   })
 
   return {
-    props: { dataSet: allData, availableYears: years }
+    props: { records: records, years: years }
   };
 }
 
-const Test = ({ dataSet, availableYears }: { dataSet: dataStore, availableYears: number[] }) => {
-  console.log(availableYears);
-  console.log(dataSet);
+const Test = ({ records, years, universities, schools, degrees }: { records: dataStore, years: string[], universities: string[], schools: string[], degrees: string[] }) => {
+  console.log(years);
+  console.log(universities);
+  console.log(schools);
+  console.log(degrees);
   return (
     <>
       <Head>
