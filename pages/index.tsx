@@ -2,6 +2,8 @@ import Head from 'next/head';
 import { Scatter } from 'react-chartjs-2';
 import { Chart, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
+Chart.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
+
 type dataRecord = {
   basic_monthly_mean: string,
   basic_monthly_median: string,
@@ -107,34 +109,37 @@ export const getStaticProps = async () => {
 
 const Test = ({ records, fields, years, universities, schools, degrees }: { records: dataRecord[], fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
   
-  // console.log(fields);
-  // console.log(years);
-  // console.log(universities);
-  // console.log(schools);
-  // console.log(degrees);
-  
-  Chart.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
+  /*
+      fields index values: 
+      #0:   year
+      #1:   employment_rate_overall
+      #2:   employment_rate_ft_perm
+      #3:   basic_monthly_mean
+      #4:   basic_monthly_median
+      #5:   gross_monthly_mean
+      #6:  gross_monthly_median
+      #7:  gross_mthly_25_percentile
+      #8:  gross_mthly_75_percentile
+  */
 
   const data = {
     datasets: [
       {
         label: 'Employment Rate Overall',
         data: records.map(record => { 
-          return { x: record[fields[0] as keyof dataRecord], y: record.employment_rate_overall }
+          return { x: record[fields[0] as keyof dataRecord], y: record[fields[1] as keyof dataRecord] }
         }),
         backgroundColor: 'rgba(255, 99, 132, 1)',
       },
       {
         label: 'Employment Rate Full Time',
         data: records.map(record => { 
-          return { x: record.year, y: record.employment_rate_ft_perm }
+          return { x: record[fields[0] as keyof dataRecord], y: record[fields[2] as keyof dataRecord] }
         }),
         backgroundColor: 'rgba(0, 99, 132, 1)',
       },
     ],
   };
-
-  console.log(fields[0]);
 
   return (
     <>
