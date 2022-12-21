@@ -51,11 +51,12 @@ export const getStaticProps = async () => {
   
 
   return {
-    props: { dataSet: data, availableYears: years }
+    props: { dataSet: allData, availableYears: years }
   };
 }
 
 const Test = ({ dataSet, availableYears }: { dataSet: dataStore, availableYears: number[] }) => {
+  console.log(availableYears);
   console.log(dataSet);
   return (
     <>
