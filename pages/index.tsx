@@ -39,6 +39,10 @@ export const getStaticProps = async () => {
   // Fetch latest data
   var latestData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=1&sort=year desc')).json();
   
+  // Fetch all data based on previous query
+  const totalRecords: number = oldestData.result.total;
+  var allData: dataStore = await (await fetch('https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=' + totalRecords + '&sort=year desc')).json();
+
   // Get all available years based on data
   var years: number[] = [];
   for (let currentYear: number = parseInt(oldestData.result.records[0].year); currentYear <= parseInt(latestData.result.records[0].year); currentYear++) {
