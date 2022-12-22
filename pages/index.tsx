@@ -46,6 +46,7 @@ const colors: string[][] = [
   ["rgba(230, 25, 27, 1)", "rgba(245, 130, 49, 1)", "rgba(255, 225, 25, 1)", "rgba(60, 180, 75, 1)", "rgba(66, 99, 216, 1)", "rgba(240, 50, 230, 1)"]
 ]
 const primaryButtonColor: string = "from-primary to-primary shadow-primary/40 hover:shadow-lg hover:shadow-primary/40";
+const secondaryButtonColor: string = "from-white to-white hover:from-gray-100 hover:to-gray-100 shadow-gray-200/10 hover:shadow-lg hover:shadow-gray-200/40 text-primary";
 const timeout = ((delay: number) => {
   return new Promise(res => setTimeout(res, delay));
 })
@@ -157,6 +158,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
   // Hooks & Functions
   const [openNav, setOpenNav] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [copiedRecent, setCopiedRecent] = useState(false);
   useEffect(() => {
     window.addEventListener(
@@ -172,40 +174,36 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="#" className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
           Pages
         </a>
       </Typography>
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="#" className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
           Account
         </a>
       </Typography>
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <a href="#" className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
           Blocks
         </a>
       </Typography>
       <Typography
         as="li"
         variant="small"
-        color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd" target="_blank" className="flex items-center">
+        <a href="https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd" target="_blank" className={`flex items-center ${darkMode ? `text-white hover:text-white/40` : `text-primary hover:text-primary/40`}`}>
           Source
         </a>
       </Typography>
@@ -250,19 +248,19 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
       </Head>
       <main>
         <header>
-          <Navbar className="mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4">
+          <Navbar className={`mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4 rounded-t-none ${darkMode ? `bg-primary` : ``}`}>
             <div className="mx-auto flex items-center justify-between text-blue-gray-900">
               <Typography
                 as="a"
                 href="#"
                 variant="small"
-                className="mr-4 cursor-pointer py-1.5 font-normal text-primary"
+                className={`mr-4 cursor-pointer py-1.5 font-normal text-primary ${darkMode ? `text-white` : `text-primary`}`}
               >
-                <b>Degree Salary <span className="text-red-500">SG</span></b>
+                <b>Degree Salary <span className="text-red-400">SG</span></b>
               </Typography>
               <div className="hidden lg:block">{navigationItems}</div>
               <ButtonTooltip content="Copy to Clipboard">
-                <Button variant="gradient" size="sm" className={`hidden w-20 lg:inline-block ${primaryButtonColor}`} onClick={() => { copyClipboard() }}>
+                <Button variant="gradient" size="sm" className={`hidden w-20 lg:inline-block ${secondaryButtonColor}`} onClick={() => { copyClipboard() }}>
                   <span>{copiedRecent ? `Copied` : `Share`}</span>
                 </Button>
               </ButtonTooltip>
@@ -307,7 +305,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
             <MobileNav className="mx-0 w-full" open={openNav}>
               {navigationItems}
               <ButtonTooltip content="Copy to Clipboard">
-                <Button variant="gradient" size="sm" className={`mb-2 w-full ${primaryButtonColor}`} onClick={() => { copyClipboard() }}>
+                <Button variant="gradient" size="sm" className={`mb-2 w-full ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { copyClipboard() }}>
                   <span>{copiedRecent ? `Copied` : `Share`}</span>
                 </Button>
               </ButtonTooltip>
