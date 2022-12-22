@@ -248,7 +248,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
       </Head>
       <main>
         <header>
-          <Navbar className={`mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4 rounded-t-none ${darkMode ? `bg-primary` : ``}`}>
+          <Navbar className={`mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4 rounded-t-none ${darkMode ? `bg-primary/90` : ``}`}>
             <div className="mx-auto flex items-center justify-between text-blue-gray-900">
               <Typography
                 as="a"
@@ -277,6 +277,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                     className="h-6 w-6"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
+                    color={darkMode ? `white` : ``}
                     strokeWidth={2}
                   >
                     <path
@@ -291,6 +292,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                     className="h-6 w-6"
                     fill="none"
                     stroke="currentColor"
+                    color={darkMode ? `white` : ``}
                     strokeWidth={2}
                   >
                     <path
@@ -323,11 +325,19 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               {/* <Scatter data={data} /> */}
             </div>
           </div>
+          <div className='mt-10'>
           <ButtonTooltip content="Download Image File (.png)">
-            <Button variant="gradient" size="sm" className={`mt-10 ${primaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
+            <Button variant="gradient" size="sm" className={`w-28 mx-3 ${darkMode ? primaryButtonColor : secondaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
               <span>Download</span>
             </Button>
           </ButtonTooltip>
+          <ButtonTooltip content="Copy link to Clipboard">
+                <Button variant="gradient" size="sm" className={`w-28 mx-3 lg:inline-block ${darkMode ? primaryButtonColor : secondaryButtonColor}`} onClick={() => { copyClipboard() }}>
+                  <span>{copiedRecent ? `Copied` : `Share`}</span>
+                </Button>
+              </ButtonTooltip>
+          </div>
+          
         </div>
       </main>
     </>
