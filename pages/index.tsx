@@ -104,6 +104,7 @@ export const getStaticProps = async () => {
       #12:  gross_mthly_75_percentile
   */
   fields.push(allData.result.fields[1].id);
+  fields.push(allData.result.fields[2].id);
   fields.push(allData.result.fields[5].id);
   fields.push(allData.result.fields[6].id);
   fields.push(allData.result.fields[7].id);
@@ -123,14 +124,15 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
   /*
       fields index values: 
       #0:   year
-      #1:   employment_rate_overall
-      #2:   employment_rate_ft_perm
-      #3:   basic_monthly_mean
-      #4:   basic_monthly_median
-      #5:   gross_monthly_mean
-      #6:  gross_monthly_median
-      #7:  gross_mthly_25_percentile
-      #8:  gross_mthly_75_percentile
+      #1:   university
+      #3:   employment_rate_overall
+      #4:   employment_rate_ft_perm
+      #5:   basic_monthly_mean
+      #6:   basic_monthly_median
+      #7:   gross_monthly_mean
+      #8:  gross_monthly_median
+      #8:  gross_mthly_25_percentile
+      #9:  gross_mthly_75_percentile
   */
   const data = {
     datasets:
@@ -142,7 +144,8 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               return true;
             }
           }).map(record => {
-            return { x: record[fields[0] as keyof dataRecord], y: record[fields[5] as keyof dataRecord] }
+            console.log(fields[1]);
+            return { x: record[fields[1] as keyof dataRecord], y: record[fields[5] as keyof dataRecord] }
           }),
           backgroundColor: colors[0][universities.indexOf(university)]
         }
