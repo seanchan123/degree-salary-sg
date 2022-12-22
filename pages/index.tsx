@@ -3,13 +3,7 @@ import { Bar, Scatter } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
 import { useState, useEffect } from "react";
-import {
-  Navbar,
-  MobileNav,
-  Typography,
-  Button,
-  IconButton,
-} from "@material-tailwind/react";
+import { Navbar, MobileNav, Typography, Button, IconButton } from "@material-tailwind/react";
 
 Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend);
 
@@ -123,7 +117,7 @@ export const getStaticProps = async () => {
   };
 }
 
-const Test = ({ records, fields, years, universities, schools, degrees }: { records: dataRecord[], fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
+const Index = ({ records, fields, years, universities, schools, degrees }: { records: dataRecord[], fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
 
   /*
       fields index values: 
@@ -299,4 +293,4 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
   )
 }
 
-export default Test;
+export default Index;
