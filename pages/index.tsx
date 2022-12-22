@@ -217,7 +217,7 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        
+
         <header>
           <nav className="block rounded-xl shadow-md backdrop-saturate-200 backdrop-blur-2xl bg-opacity-80 border border-white/80 bg-white text-white mx-0 w-screen py-2 px-4 lg:px-8 lg:py-4">
             <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
@@ -284,13 +284,16 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
           <h1 className="text-5xl font-bold mt-0 mb-6">Heading</h1>
           <h3 className="text-3xl font-bold mb-8">Subeading</h3>
           <a className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Get started</a>
-        </div>
 
-        <div>
-          <Bar data={data} />
-          {/* <Scatter data={data} /> */}
-        </div>
+          <h3 className="text-3xl font-bold mb-8">Data</h3>
+          <div className="w-screen flex justify-center items-center">
+            <div className="w-1/2">
+              <Bar data={data} />
+              {/* <Scatter data={data} /> */}
+            </div>
+          </div>
 
+        </div>
       </main>
     </>
   )
