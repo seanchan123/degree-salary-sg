@@ -221,11 +221,11 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                 variant="small"
                 className="mr-4 cursor-pointer py-1.5 font-normal"
               >
-                <span>Material Tailwind</span>
+                <b>Degree Salary SG</b>
               </Typography>
               <div className="hidden lg:block">{navList}</div>
               <Button variant="gradient" size="sm" className="hidden lg:inline-block">
-                <span>Buy Now</span>
+                <span>Contact Us</span>
               </Button>
               <IconButton
                 variant="text"
@@ -268,7 +268,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
             <MobileNav className="mx-0 w-screen" open={openNav}>
               {navList}
               <Button variant="gradient" size="sm" fullWidth className="mb-2">
-                <span>Buy Now</span>
+                <span>Contact Us</span>
               </Button>
             </MobileNav>
           </Navbar>
