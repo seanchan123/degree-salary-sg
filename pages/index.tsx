@@ -158,7 +158,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
     );
   }, []);
 
-  const navList = (
+  const navigationItems = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
@@ -224,7 +224,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               >
                 <b>Degree Salary <span className="text-red-500">SG</span></b>
               </Typography>
-              <div className="hidden lg:block">{navList}</div>
+              <div className="hidden lg:block">{navigationItems}</div>
               <Button variant="gradient" size="sm" className={`hidden lg:inline-block mb-2 ${primaryButtonColor}`}>
                 <span>Share</span>
               </Button>
@@ -266,8 +266,8 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                 )}
               </IconButton>
             </div>
-              {navList}
             <MobileNav className="mx-0 w-full" open={openNav}>
+              {navigationItems}
               <Button variant="gradient" size="sm" className={`mb-2 w-full ${primaryButtonColor}`}>
                 <span>Share</span>
               </Button>
