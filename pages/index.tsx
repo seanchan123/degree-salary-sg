@@ -38,6 +38,7 @@ type dataStore = {
   year: number[]
 }
 
+// Miscellaneous variables
 const colors: string[][] = [
   // Color Scheme #0 (Default - Shade of Primary Color)
   ["rgba(25, 69, 105, 1)", "rgba(95, 132, 162, 1)", "rgba(145, 174, 196, 1)", "rgba(183, 208, 225, 1)", "rgba(202, 222, 237, 1)", "rgba(219, 236, 244, 1)"],
@@ -144,7 +145,6 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               return true;
             }
           }).map(record => {
-            console.log(fields[1]);
             return { x: record[fields[1] as keyof dataRecord], y: record[fields[5] as keyof dataRecord] }
           }),
           backgroundColor: colors[0][universities.indexOf(university)]
@@ -152,8 +152,8 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
       })
   };
 
+  // Hooks & Functions
   const [openNav, setOpenNav] = useState(false);
-
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -161,6 +161,8 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
     );
   }, []);
 
+  // Miscellaneous variables
+  const chartRef = useRef(null);
   const navigationItems = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
