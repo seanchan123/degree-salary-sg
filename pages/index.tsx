@@ -38,7 +38,7 @@ type dataStore = {
   year: number[]
 }
 
-// Miscellaneous variables
+// Miscellaneous variables/functions
 const colors: string[][] = [
   // Color Scheme #0 (Default - Shade of Primary Color)
   ["rgba(25, 69, 105, 1)", "rgba(95, 132, 162, 1)", "rgba(145, 174, 196, 1)", "rgba(183, 208, 225, 1)", "rgba(202, 222, 237, 1)", "rgba(219, 236, 244, 1)"],
@@ -46,6 +46,9 @@ const colors: string[][] = [
   ["rgba(230, 25, 27, 1)", "rgba(245, 130, 49, 1)", "rgba(255, 225, 25, 1)", "rgba(60, 180, 75, 1)", "rgba(66, 99, 216, 1)", "rgba(240, 50, 230, 1)"]
 ]
 const primaryButtonColor: string = "from-primary to-primary shadow-primary/40 hover:shadow-lg hover:shadow-primary/40";
+const timeout = ((delay: number) => {
+  return new Promise(res => setTimeout(res, delay));
+})
 
 export const getStaticProps = async () => {
   // Variables for filter
@@ -154,6 +157,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
   // Hooks & Functions
   const [openNav, setOpenNav] = useState(false);
+  const [copiedRecent, setCopiedRecent] = useState(false);
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -208,7 +212,12 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
     </ul>
   );
 
- // Miscellaneous functions
+  // Miscellaneous functions
+  const copyClipboard = (() => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopiedRecent(true);
+    timeout(2000).then(() => { setCopiedRecent(false) });
+  })
   const downloadChart = ((chartRef: any) => {
     const base64Image = chartRef.current.toBase64Image();
 
@@ -253,8 +262,8 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               </Typography>
               <div className="hidden lg:block">{navigationItems}</div>
               <ButtonTooltip content="Copy to Clipboard">
-                <Button variant="gradient" size="sm" className={`hidden lg:inline-block mb-2 ${primaryButtonColor}`}>
-                  <span>Share</span>
+                <Button variant="gradient" size="sm" className={`hidden lg:inline-block mb-2 ${primaryButtonColor}`} onClick={() => { copyClipboard() }}>
+                  <span>{copiedRecent ? `Copied` : `Share`}</span>
                 </Button>
               </ButtonTooltip>
               <IconButton
@@ -298,8 +307,8 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
             <MobileNav className="mx-0 w-full" open={openNav}>
               {navigationItems}
               <ButtonTooltip content="Copy to Clipboard">
-                <Button variant="gradient" size="sm" className={`mb-2 w-full ${primaryButtonColor}`}>
-                  <span>Share</span>
+                <Button variant="gradient" size="sm" className={`mb-2 w-full ${primaryButtonColor}`} onClick={() => { copyClipboard() }}>
+                  <span>{copiedRecent ? `Copied` : `Share`}</span>
                 </Button>
               </ButtonTooltip>
             </MobileNav>
