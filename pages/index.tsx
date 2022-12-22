@@ -220,7 +220,7 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
 
         <header>
           <nav className="block rounded-xl shadow-md backdrop-saturate-200 backdrop-blur-2xl bg-opacity-80 border border-white/80 bg-white text-white mx-0 w-screen py-2 px-4 lg:px-8 lg:py-4">
-            <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
+            <div className="mx-auto flex items-center justify-between text-blue-gray-900">
               <Typography
                 as="a"
                 href="#"
@@ -271,7 +271,7 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
                 )}
               </IconButton>
             </div>
-            <MobileNav open={openNav}>
+            <MobileNav className="mx-0 w-screen" open={openNav}>
               {navList}
               <Button variant="gradient" size="sm" fullWidth className="mb-2">
                 <span>Buy Now</span>
