@@ -213,7 +213,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
       <main>
 
         <header>
-          <nav className="block rounded-xl shadow-md backdrop-saturate-200 backdrop-blur-2xl bg-opacity-80 border border-white/80 bg-white text-white mx-0 w-screen py-2 px-4 lg:px-8 lg:py-4">
+          <Navbar className="mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4">
             <div className="mx-auto flex items-center justify-between text-blue-gray-900">
               <Typography
                 as="a"
@@ -271,7 +271,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                 <span>Buy Now</span>
               </Button>
             </MobileNav>
-          </nav>
+          </Navbar>
         </header>
 
         <div className="text-center bg-gray-50 text-gray-800 py-20 px-6">
