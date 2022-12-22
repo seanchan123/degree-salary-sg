@@ -44,6 +44,7 @@ const colors: string[][] = [
   // Color Scheme #1 (Distinct - Rainbow)
   ["rgba(230, 25, 27, 1)", "rgba(245, 130, 49, 1)", "rgba(255, 225, 25, 1)", "rgba(60, 180, 75, 1)", "rgba(66, 99, 216, 1)", "rgba(240, 50, 230, 1)"]
 ]
+const primaryButtonColor: string = "from-primary to-primary shadow-primary/40 hover:shadow-lg hover:shadow-primary/40";
 
 export const getStaticProps = async () => {
   // Variables for filter
@@ -219,13 +220,13 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                 as="a"
                 href="#"
                 variant="small"
-                className="mr-4 cursor-pointer py-1.5 font-normal"
+                className="mr-4 cursor-pointer py-1.5 font-normal text-primary"
               >
-                <b>Degree Salary SG</b>
+                <b>Degree Salary <span className="text-red-500">SG</span></b>
               </Typography>
               <div className="hidden lg:block">{navList}</div>
-              <Button variant="gradient" size="sm" className="hidden lg:inline-block">
-                <span>Contact Us</span>
+              <Button variant="gradient" size="sm" className={`hidden lg:inline-block mb-2 ${primaryButtonColor}`}>
+                <span>Share</span>
               </Button>
               <IconButton
                 variant="text"
@@ -265,10 +266,10 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                 )}
               </IconButton>
             </div>
-            <MobileNav className="mx-0 w-screen" open={openNav}>
               {navList}
-              <Button variant="gradient" size="sm" fullWidth className="mb-2">
-                <span>Contact Us</span>
+            <MobileNav className="mx-0 w-full" open={openNav}>
+              <Button variant="gradient" size="sm" className={`mb-2 w-full ${primaryButtonColor}`}>
+                <span>Share</span>
               </Button>
             </MobileNav>
           </Navbar>
@@ -277,8 +278,9 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         <div className="text-center bg-gray-50 text-gray-800 py-20 px-6">
           <h1 className="text-5xl font-bold mt-0 mb-6">Heading</h1>
           <h3 className="text-3xl font-bold mb-8">Subeading</h3>
-          <a className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Get started</a>
-
+          <Button variant="gradient" size="sm" className={`mb-2 ${primaryButtonColor}`} >
+            <span>Button</span>
+          </Button>
           <h3 className="text-3xl font-bold mb-8">Data</h3>
           <div className="w-screen flex justify-center items-center">
             <div className="w-1/2">
