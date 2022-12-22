@@ -205,8 +205,8 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
-          Docs
+        <a href="https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd" target="_blank" className="flex items-center">
+          Source
         </a>
       </Typography>
     </ul>
