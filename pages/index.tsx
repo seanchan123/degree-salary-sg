@@ -240,7 +240,6 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-
         <header>
           <Navbar className="mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4">
             <div className="mx-auto flex items-center justify-between text-blue-gray-900">
@@ -307,7 +306,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           </Navbar>
         </header>
 
-        <div className="text-center bg-gray-50 text-gray-800 py-20 px-6">
+        <div className="text-center text-gray-800 py-10 px-6">
           <h1 className="text-5xl font-bold mt-0 mb-6">Heading</h1>
           <h3 className="text-3xl font-bold mb-8">Subeading</h3>
           <h3 className="text-3xl font-bold mb-8">Data</h3>
