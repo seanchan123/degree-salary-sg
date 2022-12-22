@@ -7,7 +7,11 @@ module.exports = withMT({
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'primary': '#194569'
+      },
+    },
   },
   plugins: [],
 });
