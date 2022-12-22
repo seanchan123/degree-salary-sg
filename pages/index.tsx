@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Bar, Scatter } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Navbar, MobileNav, Typography, Tooltip as ButtonTooltip, Button, IconButton } from "@material-tailwind/react";
 
 Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend);
@@ -206,6 +206,29 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
     </ul>
   );
 
+ // Miscellaneous functions
+  const downloadChart = ((chartRef: any) => {
+    const base64Image = chartRef.current.toBase64Image();
+
+    fetch(base64Image, {
+      method: "GET",
+      headers: {}
+    })
+      .then(response => {
+        response.arrayBuffer().then(function (buffer) {
+          const url = window.URL.createObjectURL(new Blob([buffer]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "image.png"); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  })
+
   return (
     <>
       <Head>
@@ -285,17 +308,18 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         <div className="text-center bg-gray-50 text-gray-800 py-20 px-6">
           <h1 className="text-5xl font-bold mt-0 mb-6">Heading</h1>
           <h3 className="text-3xl font-bold mb-8">Subeading</h3>
-          <Button variant="gradient" size="sm" className={`mb-2 ${primaryButtonColor}`} >
-            <span>Button</span>
-          </Button>
           <h3 className="text-3xl font-bold mb-8">Data</h3>
           <div className="w-screen flex justify-center items-center">
             <div className="w-1/2">
-              <Bar data={data} />
+              <Bar data={data} ref={chartRef} />
               {/* <Scatter data={data} /> */}
             </div>
           </div>
-
+          <ButtonTooltip content="Download Image File (.png)">
+            <Button variant="gradient" size="sm" className={`mt-10 ${primaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
+              <span>Download</span>
+            </Button>
+          </ButtonTooltip>
         </div>
       </main>
     </>
