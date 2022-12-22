@@ -3,7 +3,7 @@ import { Bar, Scatter } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
 import { useState, useEffect } from "react";
-import { Navbar, MobileNav, Typography, Button, IconButton } from "@material-tailwind/react";
+import { Navbar, MobileNav, Typography, Tooltip as ButtonTooltip, Button, IconButton } from "@material-tailwind/react";
 
 Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend);
 
@@ -225,9 +225,11 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                 <b>Degree Salary <span className="text-red-500">SG</span></b>
               </Typography>
               <div className="hidden lg:block">{navigationItems}</div>
-              <Button variant="gradient" size="sm" className={`hidden lg:inline-block mb-2 ${primaryButtonColor}`}>
-                <span>Share</span>
-              </Button>
+              <ButtonTooltip content="Copy to Clipboard">
+                <Button variant="gradient" size="sm" className={`hidden lg:inline-block mb-2 ${primaryButtonColor}`}>
+                  <span>Share</span>
+                </Button>
+              </ButtonTooltip>
               <IconButton
                 variant="text"
                 className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -268,9 +270,11 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
             </div>
             <MobileNav className="mx-0 w-full" open={openNav}>
               {navigationItems}
-              <Button variant="gradient" size="sm" className={`mb-2 w-full ${primaryButtonColor}`}>
-                <span>Share</span>
-              </Button>
+              <ButtonTooltip content="Copy to Clipboard">
+                <Button variant="gradient" size="sm" className={`mb-2 w-full ${primaryButtonColor}`}>
+                  <span>Share</span>
+                </Button>
+              </ButtonTooltip>
             </MobileNav>
           </Navbar>
         </header>
