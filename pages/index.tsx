@@ -262,7 +262,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               </Typography>
               <div className="hidden lg:block">{navigationItems}</div>
               <ButtonTooltip content="Copy to Clipboard">
-                <Button variant="gradient" size="sm" className={`hidden lg:inline-block mb-2 ${primaryButtonColor}`} onClick={() => { copyClipboard() }}>
+                <Button variant="gradient" size="sm" className={`hidden w-20 lg:inline-block ${primaryButtonColor}`} onClick={() => { copyClipboard() }}>
                   <span>{copiedRecent ? `Copied` : `Share`}</span>
                 </Button>
               </ButtonTooltip>
