@@ -2,6 +2,15 @@ import Head from 'next/head';
 import { Bar, Scatter } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
+import { useState, useEffect } from "react";
+import {
+  Navbar,
+  MobileNav,
+  Typography,
+  Button,
+  IconButton,
+} from "@material-tailwind/react";
+
 Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend);
 
 type dataRecord = {
@@ -128,7 +137,6 @@ const Test = ({ records, fields, years, universities, schools, degrees }: { reco
       #7:  gross_mthly_25_percentile
       #8:  gross_mthly_75_percentile
   */
-
   const data = {
     datasets:
       universities.map(university => {
