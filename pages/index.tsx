@@ -158,7 +158,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
   // Hooks & Functions
   const [openNav, setOpenNav] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [copiedRecent, setCopiedRecent] = useState(false);
   useEffect(() => {
     window.addEventListener(
@@ -242,7 +242,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               </ul>
               </div>
               <ButtonTooltip content="Copy to Clipboard">
-                <Button variant="gradient" size="sm" className={`hidden w-20 lg:inline-block ${secondaryButtonColor}`} onClick={() => { copyClipboard() }}>
+                <Button variant="gradient" size="sm" className={`hidden w-20 lg:inline-block ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { copyClipboard() }}>
                   <span>{copiedRecent ? `Copied` : `Share`}</span>
                 </Button>
               </ButtonTooltip>
@@ -323,12 +323,12 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           </div>
           <div className='mt-10'>
             <ButtonTooltip content="Download Image File (.png)">
-              <Button variant="gradient" size="sm" className={`w-28 mx-3 ${darkMode ? primaryButtonColor : secondaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
+              <Button variant="gradient" size="sm" className={`w-28 mx-3 ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
                 <span>Download</span>
               </Button>
             </ButtonTooltip>
             <ButtonTooltip content="Copy link to Clipboard">
-              <Button variant="gradient" size="sm" className={`w-28 mx-3 lg:inline-block ${darkMode ? primaryButtonColor : secondaryButtonColor}`} onClick={() => { copyClipboard() }}>
+              <Button variant="gradient" size="sm" className={`w-28 mx-3 lg:inline-block ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { copyClipboard() }}>
                 <span>{copiedRecent ? `Copied` : `Share`}</span>
               </Button>
             </ButtonTooltip>
