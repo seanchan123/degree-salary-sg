@@ -3,7 +3,7 @@ import { Bar, Scatter } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
 import { useState, useEffect, useRef } from "react";
-import { Navbar, MobileNav, Typography, Tooltip as ButtonTooltip, Button, IconButton } from "@material-tailwind/react";
+import { Navbar, MobileNav, Typography, Tooltip as ButtonTooltip, Switch, Button, IconButton } from "@material-tailwind/react";
 
 Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend);
 
@@ -158,7 +158,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
   // Hooks & Functions
   const [openNav, setOpenNav] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [copiedRecent, setCopiedRecent] = useState(false);
   useEffect(() => {
     window.addEventListener(
@@ -177,6 +177,9 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
   ]
 
   // Miscellaneous functions
+  const toggleDarkMode = (() => {
+    setDarkMode(!darkMode);
+  })
   const copyClipboard = (() => {
     navigator.clipboard.writeText(window.location.href);
     setCopiedRecent(true);
@@ -225,27 +228,28 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                 <b>Degree Salary <span className="text-red-400">SG</span></b>
               </Typography>
               <div className="hidden lg:block">
-              <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-                {navigationItems.map(navigationItem => {
-                  return (
-                    <Typography
-                      as="li"
-                      variant="small"
-                      className="p-1 font-normal"
-                    >
-                      <a href={navigationItem.href} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
-                        {navigationItem.name}
-                      </a>
-                    </Typography>
-                  )
-                })}
-              </ul>
+                <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+                  {navigationItems.map(navigationItem => {
+                    return (
+                      <Typography
+                        as="li"
+                        variant="small"
+                        className="p-1 font-normal"
+                      >
+                        <a href={navigationItem.href} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
+                          {navigationItem.name}
+                        </a>
+                      </Typography>
+                    )
+                  })}
+                </ul>
               </div>
-              <ButtonTooltip content="Copy to Clipboard">
-                <Button variant="gradient" size="sm" className={`hidden w-20 lg:inline-block ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { copyClipboard() }}>
-                  <span>{copiedRecent ? `Copied` : `Share`}</span>
-                </Button>
-              </ButtonTooltip>
+              <div className="hidden lg:block">
+                <div className={`mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-3`} onClick={() => { toggleDarkMode() }}>
+                  <span className={`div ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>{`${darkMode ? `Dark` : `Light`} Mode`}</span>
+                  <Switch color='blue-gray' className={`${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClickCapture={() => { toggleDarkMode() }} checked={darkMode} />
+                </div>
+              </div>
               <IconButton
                 variant="text"
                 className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
