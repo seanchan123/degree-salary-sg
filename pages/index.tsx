@@ -217,7 +217,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
       </Head>
       <main>
         <header>
-          <Navbar className={`mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4 rounded-t-none ${darkMode ? `bg-primary/90` : ``}`}>
+          <Navbar className={`mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4 rounded-t-none ${darkMode ? `bg-primary/90` : `bg-white`}`}>
             <div className="mx-auto flex items-center justify-between text-blue-gray-900">
               <Typography
                 as="a"
