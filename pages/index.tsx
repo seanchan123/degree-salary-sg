@@ -158,7 +158,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
   // Hooks & Functions
   const [openNav, setOpenNav] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [copiedRecent, setCopiedRecent] = useState(false);
   useEffect(() => {
     window.addEventListener(
@@ -169,46 +169,12 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
   // Miscellaneous variables
   const chartRef = useRef(null);
-  const navigationItems = (
-    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        as="li"
-        variant="small"
-        className="p-1 font-normal"
-      >
-        <a href="#" className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
-          Pages
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className="p-1 font-normal"
-      >
-        <a href="#" className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
-          Account
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className="p-1 font-normal"
-      >
-        <a href="#" className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
-          Blocks
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className="p-1 font-normal"
-      >
-        <a href="https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd" target="_blank" className={`flex items-center ${darkMode ? `text-white hover:text-white/40` : `text-primary hover:text-primary/40`}`}>
-          Source
-        </a>
-      </Typography>
-    </ul>
-  );
+  const navigationItems: { name: string, href: string }[] = [
+    { name: "Pages", href: "#" },
+    { name: "Account", href: "#" },
+    { name: "Blocks", href: "#" },
+    { name: "Source", href: "https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd" },
+  ]
 
   // Miscellaneous functions
   const copyClipboard = (() => {
@@ -258,7 +224,23 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               >
                 <b>Degree Salary <span className="text-red-400">SG</span></b>
               </Typography>
-              <div className="hidden lg:block">{navigationItems}</div>
+              <div className="hidden lg:block">
+              <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+                {navigationItems.map(navigationItem => {
+                  return (
+                    <Typography
+                      as="li"
+                      variant="small"
+                      className="p-1 font-normal"
+                    >
+                      <a href={navigationItem.href} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
+                        {navigationItem.name}
+                      </a>
+                    </Typography>
+                  )
+                })}
+              </ul>
+              </div>
               <ButtonTooltip content="Copy to Clipboard">
                 <Button variant="gradient" size="sm" className={`hidden w-20 lg:inline-block ${secondaryButtonColor}`} onClick={() => { copyClipboard() }}>
                   <span>{copiedRecent ? `Copied` : `Share`}</span>
@@ -305,7 +287,21 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               </IconButton>
             </div>
             <MobileNav className="mx-0 w-full" open={openNav}>
-              {navigationItems}
+              <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+                {navigationItems.map(navigationItem => {
+                  return (
+                    <Typography
+                      as="li"
+                      variant="small"
+                      className="p-1 font-normal"
+                    >
+                      <a href={navigationItem.href} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
+                        {navigationItem.name}
+                      </a>
+                    </Typography>
+                  )
+                })}
+              </ul>
               <ButtonTooltip content="Copy to Clipboard">
                 <Button variant="gradient" size="sm" className={`mb-2 w-full ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { copyClipboard() }}>
                   <span>{copiedRecent ? `Copied` : `Share`}</span>
@@ -326,18 +322,18 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
             </div>
           </div>
           <div className='mt-10'>
-          <ButtonTooltip content="Download Image File (.png)">
-            <Button variant="gradient" size="sm" className={`w-28 mx-3 ${darkMode ? primaryButtonColor : secondaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
-              <span>Download</span>
-            </Button>
-          </ButtonTooltip>
-          <ButtonTooltip content="Copy link to Clipboard">
-                <Button variant="gradient" size="sm" className={`w-28 mx-3 lg:inline-block ${darkMode ? primaryButtonColor : secondaryButtonColor}`} onClick={() => { copyClipboard() }}>
-                  <span>{copiedRecent ? `Copied` : `Share`}</span>
-                </Button>
-              </ButtonTooltip>
+            <ButtonTooltip content="Download Image File (.png)">
+              <Button variant="gradient" size="sm" className={`w-28 mx-3 ${darkMode ? primaryButtonColor : secondaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
+                <span>Download</span>
+              </Button>
+            </ButtonTooltip>
+            <ButtonTooltip content="Copy link to Clipboard">
+              <Button variant="gradient" size="sm" className={`w-28 mx-3 lg:inline-block ${darkMode ? primaryButtonColor : secondaryButtonColor}`} onClick={() => { copyClipboard() }}>
+                <span>{copiedRecent ? `Copied` : `Share`}</span>
+              </Button>
+            </ButtonTooltip>
           </div>
-          
+
         </div>
       </main>
     </>
