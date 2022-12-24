@@ -307,8 +307,8 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                 })}
               </ul>
               <ButtonTooltip content="Copy to Clipboard">
-                <Button variant="gradient" size="sm" className={`mb-2 w-full ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { copyClipboard() }}>
-                  <span>{copiedRecent ? `Copied` : `Share`}</span>
+                <Button variant="gradient" size="sm" className={`mb-2 w-full ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { toggleDarkMode() }}>
+                  <span>{`${darkMode ? `Light` : `Dark`} Mode`}</span>
                 </Button>
               </ButtonTooltip>
             </MobileNav>
