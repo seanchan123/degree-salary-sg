@@ -247,7 +247,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               <div className="hidden lg:block">
                 <div className={`mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-3 cursor-pointer`} onClick={() => { toggleDarkMode() }}>
                   <span className={`div ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>{`${darkMode ? `Dark` : `Light`} Mode`}</span>
-                  <Switch color='blue-gray' className={`${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClickCapture={() => { toggleDarkMode() }} checked={darkMode} />
+                  <Switch color='blue-gray' className={`${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClickCapture={() => { toggleDarkMode() }} onChange={() => { toggleDarkMode() }} checked={darkMode} />
                 </div>
               </div>
               <IconButton
