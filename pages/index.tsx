@@ -319,12 +319,14 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           <h1 className="text-5xl font-bold mt-0 mb-6">Heading</h1>
           <h3 className="text-3xl font-bold mb-8">Subeading</h3>
           <h3 className="text-3xl font-bold mb-8">Data</h3>
+
           <div className="w-screen flex justify-center items-center">
-            <div className="w-1/2">
+            <div className="w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2">
               <Bar data={data} ref={chartRef} />
               {/* <Scatter data={data} /> */}
             </div>
           </div>
+
           <div className='mt-10'>
             <ButtonTooltip content="Download Image File (.png)">
               <Button variant="gradient" size="sm" className={`w-28 mx-3 ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
@@ -337,7 +339,6 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               </Button>
             </ButtonTooltip>
           </div>
-
         </div>
       </main>
     </>
