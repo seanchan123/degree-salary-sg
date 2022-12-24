@@ -126,6 +126,18 @@ export const getStaticProps = async () => {
 
 const Index = ({ records, fields, years, universities, schools, degrees }: { records: dataRecord[], fields: string[], years: string[], universities: string[], schools: string[], degrees: string[] }) => {
 
+  // Hooks & Functions
+  const [openNav, setOpenNav] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [copiedRecent, setCopiedRecent] = useState(false);
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      () => window.innerWidth >= 960 && setOpenNav(false)
+    );
+  }, []);
+
+
   /*
       fields index values: 
       #0:   year
@@ -139,7 +151,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
       #8:  gross_mthly_25_percentile
       #9:  gross_mthly_75_percentile
   */
-  const data = {
+  const chartData = {
     datasets:
       universities.map(university => {
         return {
@@ -155,17 +167,21 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         }
       })
   };
-
-  // Hooks & Functions
-  const [openNav, setOpenNav] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const [copiedRecent, setCopiedRecent] = useState(false);
-  useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false)
-    );
-  }, []);
+  const chartOptions = {
+    scales: {
+      x: {
+        grid: {
+          color: darkMode ? "#747474" : "#E1E1E1"
+        }
+      },
+      y: {
+        grid: {
+          color: darkMode ? "#747474" : "#E1E1E1"
+        }
+      }
+    }
+  }
+  Chart.defaults.color = darkMode ? "#FFFFFF" : "#1F2937";
 
   // Miscellaneous variables
   const chartRef = useRef(null);
@@ -315,15 +331,17 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           </Navbar>
         </header>
 
-        <div className="text-center text-gray-800 py-10 px-6">
+        <div className={`text-center place-items-center py-10 ${darkMode ? `text-white` : `text-gray-800`}`}>
           <h1 className="text-5xl font-bold mt-0 mb-6">Heading</h1>
           <h3 className="text-3xl font-bold mb-8">Subeading</h3>
-          <h3 className="text-3xl font-bold mb-8">Data</h3>
+          <div className='text-left translate-x-[20%] w-4/5 flex'>
+            <h3 className="text-2xl font-bold mb-8">Data</h3>
+          </div>
 
           <div className="w-screen flex justify-center items-center">
             <div className="w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2">
-              <Bar data={data} ref={chartRef} />
-              {/* <Scatter data={data} /> */}
+              <Bar data={chartData} ref={chartRef} options={chartOptions} />
+              {/* <Scatter data={chartData} /> */}
             </div>
           </div>
 
