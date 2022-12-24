@@ -169,11 +169,11 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
   // Miscellaneous variables
   const chartRef = useRef(null);
-  const navigationItems: { name: string, href: string }[] = [
+  const navigationItems: { name: string, href: string, target?: string }[] = [
     { name: "Pages", href: "#" },
     { name: "Account", href: "#" },
     { name: "Blocks", href: "#" },
-    { name: "Source", href: "https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd" },
+    { name: "Source", href: "https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd", target: "_blank" },
   ]
 
   // Miscellaneous functions
@@ -236,7 +236,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                         variant="small"
                         className="p-1 font-normal"
                       >
-                        <a href={navigationItem.href} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
+                        <a href={navigationItem.href} target={navigationItem.target} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
                           {navigationItem.name}
                         </a>
                       </Typography>
@@ -299,7 +299,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                       variant="small"
                       className="p-1 font-normal"
                     >
-                      <a href={navigationItem.href} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
+                      <a href={navigationItem.href} target={navigationItem.target} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
                         {navigationItem.name}
                       </a>
                     </Typography>
