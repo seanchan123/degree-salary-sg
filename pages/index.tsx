@@ -232,81 +232,21 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`h-screen transition ${darkMode ? `bg-[#0a1c2b]` : `bg-gray-50`}`}>
-        <header>
-          <Navbar className={`mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4 rounded-t-none ${darkMode ? `bg-[#0f2a40] border-slate-900 bg-opacity-100` : `bg-white`}`}>
-            <div className="mx-auto flex items-center justify-between text-blue-gray-900">
-              <Typography
-                as="a"
-                href="#"
-                variant="small"
-                className={`mr-4 cursor-pointer py-1.5 font-normal text-primary ${darkMode ? `text-white` : `text-primary`}`}
-              >
-                <b>Degree Salary <span className="text-red-400">SG</span></b>
-              </Typography>
-              <div className="hidden lg:block">
-                <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-                  {navigationItems.map(navigationItem => {
-                    return (
-                      <Typography
-                        as="li"
-                        variant="small"
-                        className="p-1 font-normal"
-                      >
-                        <a href={navigationItem.href} target={navigationItem.target} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
-                          {navigationItem.name}
-                        </a>
-                      </Typography>
-                    )
-                  })}
-                </ul>
-              </div>
-              <div className="hidden lg:block">
-                <div className={`mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-3 cursor-pointer`} onClick={() => { toggleDarkMode() }}>
-                  <span className={`div ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>{`${darkMode ? `Dark` : `Light`} Mode`}</span>
-                  <Switch color='blue-gray' className={`${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClickCapture={() => { toggleDarkMode() }} onChange={() => { toggleDarkMode() }} checked={darkMode} />
-                </div>
-              </div>
-              <IconButton
-                variant="text"
-                className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-                ripple={false}
-                onClick={() => setOpenNav(!openNav)}
-              >
-                {openNav ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    className="h-6 w-6"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    color={darkMode ? `white` : ``}
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    color={darkMode ? `white` : ``}
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                )}
-              </IconButton>
-            </div>
-            <MobileNav className="mx-0 w-full" open={openNav}>
+        {/* Navigation Bar */}
+        <Navbar className={`mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4 rounded-t-none ${darkMode ? `bg-[#0f2a40] border-slate-900 bg-opacity-100` : `bg-white`}`}>
+          {/* Navigation Bar (Desktop) */}
+          <div className="mx-auto flex items-center justify-between text-blue-gray-900">
+            {/* Degree Salary SG Logo */}
+            <Typography
+              as="a"
+              href="#"
+              variant="small"
+              className={`mr-4 cursor-pointer py-1.5 font-normal text-primary ${darkMode ? `text-white` : `text-primary`}`}
+            >
+              <b>Degree Salary <span className="text-red-400">SG</span></b>
+            </Typography>
+            {/* Navigation Items (Desktop) */}
+            <div className="hidden lg:block">
               <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
                 {navigationItems.map(navigationItem => {
                   return (
@@ -322,22 +262,94 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                   )
                 })}
               </ul>
-              <ButtonTooltip content={`Change to ${darkMode ? `Light` : `Dark`} Mode`}>
-                <Button variant="gradient" size="sm" className={`mb-2 w-full ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { toggleDarkMode() }}>
-                  <span>{`${darkMode ? `Light` : `Dark`} Mode`}</span>
-                </Button>
-              </ButtonTooltip>
-            </MobileNav>
-          </Navbar>
-        </header>
+            </div>
+            {/* Toggle Dark Mode (Desktop) */}
+            <div className="hidden lg:block">
+              <div className={`mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-3 cursor-pointer`} onClick={() => { toggleDarkMode() }}>
+                <span className={`div ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>{`${darkMode ? `Dark` : `Light`} Mode`}</span>
+                <Switch color='blue-gray' className={`${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClickCapture={() => { toggleDarkMode() }} onChange={() => { toggleDarkMode() }} checked={darkMode} />
+              </div>
+            </div>
+            {/* Hamburger Button (Mobile/Tablet) */}
+            <IconButton
+              variant="text"
+              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              ripple={false}
+              onClick={() => setOpenNav(!openNav)}
+            >
+              {openNav ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  className="h-6 w-6"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  color={darkMode ? `white` : ``}
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  color={darkMode ? `white` : ``}
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </IconButton>
+          </div>
+          {/* Navigation Bar (Mobile/Tablet) */}
+          <MobileNav className="mx-0 w-full" open={openNav}>
+            {/* Navigation Items (Mobile/Tablet) */}
+            <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+              {navigationItems.map(navigationItem => {
+                return (
+                  <Typography
+                    as="li"
+                    variant="small"
+                    className="p-1 font-normal"
+                  >
+                    <a href={navigationItem.href} target={navigationItem.target} className={`flex items-center ${darkMode ? `text-white hover:text-white/80` : `text-primary hover:text-primary/40`}`}>
+                      {navigationItem.name}
+                    </a>
+                  </Typography>
+                )
+              })}
+            </ul>
+            {/* Dark Mode Button (Mobile/Tablet) */}
+            <ButtonTooltip content={`Change to ${darkMode ? `Light` : `Dark`} Mode`}>
+              <Button variant="gradient" size="sm" className={`mb-2 w-full ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { toggleDarkMode() }}>
+                <span>{`${darkMode ? `Light` : `Dark`} Mode`}</span>
+              </Button>
+            </ButtonTooltip>
+          </MobileNav>
+        </Navbar>
 
+        {/* Main Body */}
         <div className={`text-center place-items-center py-10 ${darkMode ? `text-white` : `text-gray-800`}`}>
-          <h1 className="text-5xl font-bold mt-0 mb-6">Heading</h1>
-          <h3 className="text-3xl font-bold mb-8">Subeading</h3>
+          {/* Title Group */}
+          {/* <h1 className="text-5xl font-bold mt-0 mb-6">Heading</h1>
+          <h3 className="text-3xl font-bold mb-8">Subeading</h3> */}
+
+          {/* ChartJS Filters */}
           <div className='text-left translate-x-[20%] w-4/5 flex'>
-            <h3 className="text-2xl font-bold mb-8">Data</h3>
+            <h3 className="text-2xl font-bold mb-8">Filters</h3>
           </div>
 
+          {/* ChartJS Display */}
           <div className="w-screen flex justify-center items-center">
             <div className="w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2">
               <Bar data={chartData} ref={chartRef} options={chartOptions} />
@@ -345,6 +357,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
             </div>
           </div>
 
+          {/* ChartJS Action Buttons */}
           <div className='mt-10'>
             <ButtonTooltip content="Download Image File (.png)">
               <Button variant="gradient" size="sm" className={`w-28 mx-3 ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
@@ -357,6 +370,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               </Button>
             </ButtonTooltip>
           </div>
+
         </div>
       </main>
     </>
