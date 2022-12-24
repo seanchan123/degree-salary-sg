@@ -215,7 +215,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={`h-screen ${darkMode ? `bg-gray-300` : `bg-gray-100`}`}>
         <header>
           <Navbar className={`mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4 rounded-t-none ${darkMode ? `bg-primary/90` : `bg-white`}`}>
             <div className="mx-auto flex items-center justify-between text-blue-gray-900">

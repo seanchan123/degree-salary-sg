@@ -7,12 +7,10 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <body className='bg-gray-50'>
-        <ThemeProvider>
-          <Main />
-          <NextScript />
-        </ThemeProvider>
-      </body>
+      <ThemeProvider>
+        <Main />
+        <NextScript />
+      </ThemeProvider>
     </Html>
   )
 }
