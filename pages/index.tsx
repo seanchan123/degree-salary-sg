@@ -362,19 +362,22 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
           {/* ChartJS Filters */}
           <div className='text-left translate-x-[10%] w-4/5'>
-            <h3 className="text-xl font-bold">Year of Survey</h3>
-            <div className="overflow-x-auto w-full gap-2 ">
-              {years.map((year, index) => {
-                return (
-                  <Button variant="gradient" size="sm"
-                    className={`w-28 mx-2 my-3 ${selectedYears.includes(year) ?
-                      (darkMode ? secondaryButtonColor : primaryButtonColor) :
-                      (darkMode ? primaryButtonColor : secondaryButtonColor)}`}
-                    onClick={() => updateYearFilter(index)}>
-                    <span>{year}</span>
-                  </Button>
-                )
-              })}
+            {/* Year of Survey */}
+            <div className="mb-5">
+              <h3 className="text-xl font-bold">Year of Survey</h3>
+              <div className="overflow-x-auto w-full gap-2 ">
+                {years.map((year, index) => {
+                  return (
+                    <Button variant="gradient" size="sm"
+                      className={`w-28 mx-2 my-3 ${selectedYears.includes(year) ?
+                        (darkMode ? secondaryButtonColor : primaryButtonColor) :
+                        (darkMode ? primaryButtonColor : secondaryButtonColor)}`}
+                      onClick={() => updateYearFilter(index)}>
+                      <span>{year}</span>
+                    </Button>
+                  )
+                })}
+              </div>
             </div>
           </div>
 
