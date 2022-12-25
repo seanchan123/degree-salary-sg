@@ -142,13 +142,13 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
   /*
       fields index values: 
-      #0:   year
-      #1:   university
-      #3:   employment_rate_overall
-      #4:   employment_rate_ft_perm
-      #5:   basic_monthly_mean
-      #6:   basic_monthly_median
-      #7:   gross_monthly_mean
+      #0:  year
+      #1:  university
+      #3:  employment_rate_overall
+      #4:  employment_rate_ft_perm
+      #5:  basic_monthly_mean
+      #6:  basic_monthly_median
+      #7:  gross_monthly_mean
       #8:  gross_monthly_median
       #8:  gross_mthly_25_percentile
       #9:  gross_mthly_75_percentile
@@ -167,7 +167,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               }
             }
           }).map(record => {
-            return { x: record[fields[1] as keyof dataRecord], y: record[fields[5] as keyof dataRecord] }
+            return { x: record[fields[3] as keyof dataRecord], y: record[fields[5] as keyof dataRecord] }
           }),
           backgroundColor: colors[0][universities.indexOf(university)]
         }
@@ -418,8 +418,8 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           {/* ChartJS Display */}
           <div className={`w-screen flex justify-center items-center ${darkMode ? `text-white` : `text-gray-800`}`}>
             <div className="w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2">
-              <Bar data={chartData} ref={chartRef} options={chartOptions} />
-              {/* <Scatter data={chartData} /> */}
+              {/* <Bar data={chartData} ref={chartRef} options={chartOptions} /> */}
+              <Scatter data={chartData}  ref={chartRef} options={chartOptions}/>
             </div>
           </div>
 
