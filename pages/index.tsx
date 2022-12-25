@@ -231,7 +231,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`h-screen transition ${darkMode ? `bg-[#0a1c2b]` : `bg-gray-50`}`}>
+      <main className={`h-screen transition ${darkMode ? `bg-[#0a1c2b]` : `bg-gray-100`}`}>
         {/* Navigation Bar */}
         <Navbar className={`mx-0 max-w-none w-screen py-2 px-4 lg:px-8 lg:py-4 rounded-t-none ${darkMode ? `bg-[#0f2a40] border-slate-900 bg-opacity-100` : `bg-white`}`}>
           {/* Navigation Bar (Desktop) */}
