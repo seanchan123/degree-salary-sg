@@ -131,6 +131,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
   const [darkMode, setDarkMode] = useState(false);
   const [copiedRecent, setCopiedRecent] = useState(false);
   const [selectedYears, updateSelectedYears] = useState<string[]>(years);
+  const [selectedUniversities, updateSelectedUniversities] = useState<string[]>(universities);
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -160,7 +161,9 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           data: records.filter(record => {
             if (record.university == university) {
               if (selectedYears.includes(record.year)){
-                return true;
+                if (selectedUniversities.includes(record.university)){
+                  return true;
+                }
               }
             }
           }).map(record => {
@@ -237,6 +240,18 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
       var tempArr = [...selectedYears];
       tempArr.push(years[index])
       updateSelectedYears(tempArr);
+    }
+  })
+  const updateUniversityFilter = ((index: number) => {
+    if (selectedUniversities.includes(universities[index])) {
+      var tempArr = [...selectedUniversities];
+      const removeIndex = tempArr.indexOf(universities[index]);
+      tempArr.splice(removeIndex, 1);
+      updateSelectedUniversities(tempArr);
+    } else {
+      var tempArr = [...selectedUniversities];
+      tempArr.push(universities[index])
+      updateSelectedUniversities(tempArr);
     }
   })
 
@@ -364,7 +379,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
           {/* ChartJS Filters */}
           <div className='text-left translate-x-[10%] w-4/5'>
-            {/* Year of Survey */}
+            {/* Year */}
             <div className="mb-5">
               <h3 className="text-xl font-bold">Year of Survey</h3>
               <div className="overflow-x-auto w-full gap-2 ">
@@ -376,6 +391,23 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
                         (darkMode ? primaryButtonColor : secondaryButtonColor)}`}
                       onClick={() => updateYearFilter(index)}>
                       <span>{year}</span>
+                    </Button>
+                  )
+                })}
+              </div>
+            </div>
+            {/* University */}
+            <div className="mb-5">
+              <h3 className="text-xl font-bold">University</h3>
+              <div className="overflow-x-auto w-full gap-2 ">
+                {universities.map((university, index) => {
+                  return (
+                    <Button variant="gradient" size="sm"
+                      className={`mx-2 my-2 ${selectedUniversities.includes(university) ?
+                        (darkMode ? secondaryButtonColor : primaryButtonColor) :
+                        (darkMode ? primaryButtonColor : secondaryButtonColor)}`}
+                      onClick={() => updateUniversityFilter(index)}>
+                      <span>{university}</span>
                     </Button>
                   )
                 })}
