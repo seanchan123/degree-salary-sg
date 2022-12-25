@@ -159,7 +159,9 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           label: university,
           data: records.filter(record => {
             if (record.university == university) {
-              return true;
+              if (selectedYears.includes(record.year)){
+                return true;
+              }
             }
           }).map(record => {
             return { x: record[fields[1] as keyof dataRecord], y: record[fields[5] as keyof dataRecord] }
