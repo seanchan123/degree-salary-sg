@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { Bar, Scatter } from 'react-chartjs-2';
-import { Chart, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
+import { Chart, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip as ChartTooltip, Legend } from 'chart.js';
 
-import { useState, useEffect, useRef } from "react";
-import { Navbar, MobileNav, Typography, Tooltip as ButtonTooltip, Switch, Button, IconButton } from "@material-tailwind/react";
+import { useState, useEffect, useRef, MutableRefObject } from "react";
+import { Navbar, MobileNav, Typography, Tooltip, Switch, Button, IconButton } from "@material-tailwind/react";
 
-Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Tooltip, Legend);
+Chart.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, ChartTooltip, Legend);
 
 type dataRecord = {
   basic_monthly_mean: string,
@@ -184,7 +184,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
   Chart.defaults.color = darkMode ? "#FFFFFF" : "#1F2937";
 
   // Miscellaneous variables
-  const chartRef = useRef(null);
+  const chartRef: MutableRefObject<null> = useRef(null);
   const navigationItems: { name: string, href: string, target?: string }[] = [
     { name: "Pages", href: "#" },
     { name: "Account", href: "#" },
@@ -330,11 +330,11 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
               })}
             </ul>
             {/* Dark Mode Button (Mobile/Tablet) */}
-            <ButtonTooltip content={`Change to ${darkMode ? `Light` : `Dark`} Mode`}>
+            <Tooltip content={`Change to ${darkMode ? `Light` : `Dark`} Mode`}>
               <Button variant="gradient" size="sm" className={`mb-2 w-full ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { toggleDarkMode() }}>
                 <span>{`${darkMode ? `Light` : `Dark`} Mode`}</span>
               </Button>
-            </ButtonTooltip>
+            </Tooltip>
           </MobileNav>
         </Navbar>
 
@@ -359,16 +359,16 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
 
           {/* ChartJS Action Buttons */}
           <div className='mt-10'>
-            <ButtonTooltip content="Download Image File (.png)">
+            <Tooltip content="Download Image File (.png)">
               <Button variant="gradient" size="sm" className={`w-28 mx-3 ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => downloadChart(chartRef)} >
                 <span>Download</span>
               </Button>
-            </ButtonTooltip>
-            <ButtonTooltip content="Copy link to Clipboard">
+            </Tooltip>
+            <Tooltip content="Copy link to Clipboard">
               <Button variant="gradient" size="sm" className={`w-28 mx-3 lg:inline-block ${darkMode ? secondaryButtonColor : primaryButtonColor}`} onClick={() => { copyClipboard() }}>
                 <span>{copiedRecent ? `Copied` : `Share`}</span>
               </Button>
-            </ButtonTooltip>
+            </Tooltip>
           </div>
 
         </div>
