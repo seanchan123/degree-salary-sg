@@ -46,7 +46,7 @@ const colors: string[][] = [
   ["rgba(230, 25, 27, 1)", "rgba(245, 130, 49, 1)", "rgba(255, 225, 25, 1)", "rgba(60, 180, 75, 1)", "rgba(66, 99, 216, 1)", "rgba(240, 50, 230, 1)"]
 ]
 const primaryButtonColor: string = "from-primary to-primary shadow-primary/40 hover:shadow-lg hover:shadow-primary/40";
-const secondaryButtonColor: string = "from-white to-white hover:from-gray-100 hover:to-gray-100 shadow-gray-200/10 hover:shadow-lg hover:shadow-gray-200/40 text-primary";
+const secondaryButtonColor: string = "from-white to-white hover:from-gray-200 hover:to-gray-200 shadow-gray-400/10 hover:shadow-lg hover:shadow-gray-400/40 text-primary";
 const timeout = ((delay: number) => {
   return new Promise(res => setTimeout(res, delay));
 })
