@@ -223,10 +223,10 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         console.log(err);
       });
   })
-  
+
   // Filter Chart Functions
   const updateYearFilter = ((index: number) => {
-    if (selectedYears.includes(years[index])){
+    if (selectedYears.includes(years[index])) {
       var tempArr = [...selectedYears];
       const removeIndex = tempArr.indexOf(years[index]);
       tempArr.splice(removeIndex, 1);
@@ -364,19 +364,17 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           <div className='text-left translate-x-[10%] w-4/5'>
             <h3 className="text-xl font-bold">Year of Survey</h3>
             <div className="overflow-x-auto w-full gap-2 ">
-              {
-                years.map((year, index) => {
-                  return (
-                    <Button variant="gradient" size="sm" 
-                      className={`w-28 mx-2 my-3 ${selectedYears.includes(year) ? 
-                        (darkMode ? secondaryButtonColor : primaryButtonColor) : 
-                        (darkMode ? primaryButtonColor : secondaryButtonColor)}`} 
-                      onClick={() => updateYearFilter(index)}>
-                      <span>{year}</span>
-                    </Button>
-                  )
-                })
-              }
+              {years.map((year, index) => {
+                return (
+                  <Button variant="gradient" size="sm"
+                    className={`w-28 mx-2 my-3 ${selectedYears.includes(year) ?
+                      (darkMode ? secondaryButtonColor : primaryButtonColor) :
+                      (darkMode ? primaryButtonColor : secondaryButtonColor)}`}
+                    onClick={() => updateYearFilter(index)}>
+                    <span>{year}</span>
+                  </Button>
+                )
+              })}
             </div>
           </div>
 
