@@ -130,6 +130,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
   const [openNav, setOpenNav] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [copiedRecent, setCopiedRecent] = useState(false);
+  const [selectedYears, updateSelectedYears] = useState<string[]>(years);
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -183,7 +184,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
   }
   Chart.defaults.color = darkMode ? "#FFFFFF" : "#1F2937";
 
-  // Miscellaneous variables
+  // Miscellaneous Variables
   const chartRef: MutableRefObject<null> = useRef(null);
   const navigationItems: { name: string, href: string, target?: string }[] = [
     { name: "Pages", href: "#" },
@@ -192,7 +193,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
     { name: "Source", href: "https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd", target: "_blank" },
   ]
 
-  // Miscellaneous functions
+  // Miscellaneous Functions
   const toggleDarkMode = (() => {
     setDarkMode(!darkMode);
   })
@@ -222,6 +223,21 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
         console.log(err);
       });
   })
+  
+  // Filter Chart Functions
+  const updateYearFilter = ((index: number) => {
+    if (selectedYears.includes(years[index])){
+      var tempArr = [...selectedYears];
+      const removeIndex = tempArr.indexOf(years[index]);
+      tempArr.splice(removeIndex, 1);
+      updateSelectedYears(tempArr);
+    } else {
+      var tempArr = [...selectedYears];
+      tempArr.push(years[index])
+      updateSelectedYears(tempArr);
+    }
+  })
+
 
   return (
     <>
@@ -345,8 +361,23 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           <h3 className="text-3xl font-bold mb-8">Subeading</h3> */}
 
           {/* ChartJS Filters */}
-          <div className='text-left translate-x-[20%] w-4/5 flex'>
-            <h3 className="text-2xl font-bold mb-8">Filters</h3>
+          <div className='text-left translate-x-[10%] w-4/5'>
+            <h3 className="text-xl font-bold">Year of Survey</h3>
+            <div className="overflow-x-auto w-full gap-2 ">
+              {
+                years.map((year, index) => {
+                  return (
+                    <Button variant="gradient" size="sm" 
+                      className={`w-28 mx-2 my-3 ${selectedYears.includes(year) ? 
+                        (darkMode ? secondaryButtonColor : primaryButtonColor) : 
+                        (darkMode ? primaryButtonColor : secondaryButtonColor)}`} 
+                      onClick={() => updateYearFilter(index)}>
+                      <span>{year}</span>
+                    </Button>
+                  )
+                })
+              }
+            </div>
           </div>
 
           {/* ChartJS Display */}
