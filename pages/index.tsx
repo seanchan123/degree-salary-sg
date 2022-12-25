@@ -350,7 +350,7 @@ const Index = ({ records, fields, years, universities, schools, degrees }: { rec
           </div>
 
           {/* ChartJS Display */}
-          <div className="w-screen flex justify-center items-center">
+          <div className={`w-screen flex justify-center items-center ${darkMode ? `text-white` : `text-gray-800`}`}>
             <div className="w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2">
               <Bar data={chartData} ref={chartRef} options={chartOptions} />
               {/* <Scatter data={chartData} /> */}
