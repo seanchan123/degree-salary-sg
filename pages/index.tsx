@@ -378,6 +378,7 @@ const Index = ({
                     <Typography
                       as="li"
                       variant="small"
+                      key={navigationItem.name}
                       className="p-1 font-normal"
                     >
                       <a
@@ -476,6 +477,7 @@ const Index = ({
                   <Typography
                     as="li"
                     variant="small"
+                    key={navigationItem.name}
                     className="p-1 font-normal"
                   >
                     <a
@@ -530,8 +532,9 @@ const Index = ({
                 {years.map((year, index) => {
                   return (
                     <Button
-                      variant="gradient"
                       size="sm"
+                      key={year}
+                      variant="gradient"
                       className={`w-28 mx-2 my-3 ${
                         selectedYears.includes(year)
                           ? darkMode
@@ -556,8 +559,9 @@ const Index = ({
                 {universities.map((university, index) => {
                   return (
                     <Button
-                      variant="gradient"
                       size="sm"
+                      key={university}
+                      variant="gradient"
                       className={`mx-2 my-2 ${
                         selectedUniversities.includes(university)
                           ? darkMode
