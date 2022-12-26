@@ -253,14 +253,18 @@ const Index = ({
     plugins: {
       tooltip: {
         callbacks: {
-          beforeTitle: () => {
-            return 'Before Title';
+          beforeTitle: (tooltipItem: any) => {
+            const recordUniversity = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.university;
+            const recordYear = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.year;
+            return (recordUniversity + ", " + recordYear);
           },
-          title: () => {
-            return 'Title';
+          title: (tooltipItem: any) => {
+            const recordSchool = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.school;
+            return (recordSchool);
           },
-          afterTitle: () => {
-            return 'After Title';
+          afterTitle: (tooltipItem: any) => {
+            const recordDegree = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.degree;
+            return (recordDegree);
           },
         }
       }
