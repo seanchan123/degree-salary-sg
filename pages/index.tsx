@@ -117,7 +117,7 @@ export const getStaticProps = async () => {
         totalRecords
     )
   ).json();
-  var records: dataStore["result"]["records"] = allData.result.records;
+  var records: dataRecord[] = allData.result.records;
 
   // Get unique data for filtering
   records.map((record) => {
@@ -201,8 +201,7 @@ const Index = ({
   const [darkMode, setDarkMode] = useState(false);
   const [copiedRecent, setCopiedRecent] = useState(false);
   const [selectedYears, updateSelectedYears] = useState<string[]>(years);
-  const [selectedUniversities, updateSelectedUniversities] =
-    useState<string[]>(universities);
+  const [selectedUniversities, updateSelectedUniversities] = useState<string[]>(universities);
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -338,8 +337,8 @@ const Index = ({
   return (
     <>
       <Head>
-        <title>Test API</title>
-        <meta name="description" content="Testing data.gov.sg API" />
+        <title>Degree Salary SG</title>
+        <meta name="description" content="Graduate Employment Survey w/ data.gov.sg API" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -592,6 +591,7 @@ const Index = ({
 
           {/* ChartJS Action Buttons */}
           <div className="mt-10">
+            {/* Download Button */}
             <Tooltip content="Download Image File (.png)">
               <Button
                 variant="gradient"
@@ -604,6 +604,7 @@ const Index = ({
                 <span>Download</span>
               </Button>
             </Tooltip>
+            {/* Copy to Clipboard Button */}
             <Tooltip content="Copy link to Clipboard">
               <Button
                 variant="gradient"
