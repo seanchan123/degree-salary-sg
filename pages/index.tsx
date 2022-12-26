@@ -247,6 +247,24 @@ const Index = ({
     }),
   };
   const chartOptions = {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          beforeTitle: () => {
+            return 'Before Title';
+          },
+          title: () => {
+            return 'Title';
+          },
+          afterTitle: () => {
+            return 'After Title';
+          },
+          label: (tooltipItem: any) => {
+            console.log(tooltipItem);
+          }
+        }
+      }
+    },
     scales: {
       x: {
         grid: {
