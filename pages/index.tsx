@@ -19,7 +19,7 @@ import {
   Tooltip,
   Switch,
   Button,
-  IconButton,
+  IconButton
 } from "@material-tailwind/react";
 
 Chart.register(
@@ -238,8 +238,11 @@ const Index = ({
           })
           .map((record) => {
             return {
+              // Plotted Points in ChartJS
               x: record[fields[3] as keyof dataRecord],
               y: record[fields[5] as keyof dataRecord],
+              // Hidden values in ChartJS
+              record: record
             };
           }),
         backgroundColor: colors[0][universities.indexOf(university)],
@@ -259,9 +262,6 @@ const Index = ({
           afterTitle: () => {
             return 'After Title';
           },
-          label: (tooltipItem: any) => {
-            console.log(tooltipItem);
-          }
         }
       }
     },
