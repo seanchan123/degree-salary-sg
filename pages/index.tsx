@@ -232,10 +232,10 @@ const Index = ({
               if (selectedYears.includes(record.year)) {
                 if (selectedUniversities.includes(record.university)) {
                   if (
-                    record.year.includes(searchInput) ||
-                    record.university.includes(searchInput) ||
-                    record.school.includes(searchInput) ||
-                    record.degree.includes(searchInput)
+                    record.year.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    record.university.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    record.school.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    record.degree.toLowerCase().includes(searchInput.toLowerCase())
                   ) {
                     return true;
                   }
