@@ -319,10 +319,12 @@ const Index = ({
         response.arrayBuffer().then(function (buffer) {
           const fileType = ".png";
           const timestamp = Date.now();
+          const fileName = "DSSG " + new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp) + fileType;
+          
           const url = window.URL.createObjectURL(new Blob([buffer]));
           const link = document.createElement("a");
           link.href = url;
-          link.setAttribute("download", "image.png"); //or any other extension
+          link.setAttribute("download", fileName); //or any other extension
           document.body.appendChild(link);
           link.click();
         });
