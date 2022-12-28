@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@material-tailwind/react": "^1.2.4",
-    "@mui/material": "^5.11.2",
     "@next/font": "13.0.7",
     "@types/node": "18.11.17",
     "@types/react": "18.0.26",
