@@ -559,7 +559,7 @@ const Index = ({
           <h3 className='text-3xl font-bold mb-8'>Subeading</h3> */}
 
           {/* ChartJS Filters */}
-          <div className='text-left translate-x-[10%] w-4/5'>
+          <div className='text-left translate-x-[10%] w-4/5 mb-10'>
             {/* Year */}
             <div className='mb-5'>
               <h3 className='text-xl font-bold'>Year of Survey</h3>
@@ -570,7 +570,7 @@ const Index = ({
                       size='sm'
                       key={year}
                       variant='gradient'
-                      className={`w-28 mx-2 my-3 ${
+                      className={`w-24 mx-2 my-3 ${
                         selectedYears.includes(year)
                           ? darkMode
                             ? secondaryButtonColor
@@ -597,7 +597,7 @@ const Index = ({
                       size='sm'
                       key={university}
                       variant='gradient'
-                      className={`mx-2 my-2 ${
+                      className={`w-24 mx-2 my-2 ${
                         selectedUniversities.includes(university)
                           ? darkMode
                             ? secondaryButtonColor
@@ -629,7 +629,7 @@ const Index = ({
           </div>
 
           {/* ChartJS Action Buttons */}
-          <div className='mt-10'>
+          <div className='mt-5'>
             {/* Download Button */}
             <Tooltip content='Download Image File (.png)'>
               <Button
