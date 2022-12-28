@@ -608,7 +608,7 @@ const Index = ({
                       }`}
                       onClick={() => updateUniversityFilter(index)}
                     >
-                      <span>{university}</span>
+                      <span>{university.replace(/[a-z]/g, '').replace(/ /g, '')}</span>
                     </Button>
                   );
                 })}
