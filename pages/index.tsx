@@ -231,7 +231,14 @@ const Index = ({
             if (record.university == university) {
               if (selectedYears.includes(record.year)) {
                 if (selectedUniversities.includes(record.university)) {
-                  return true;
+                  if (
+                    record.year.includes(searchInput) ||
+                    record.university.includes(searchInput) ||
+                    record.school.includes(searchInput) ||
+                    record.degree.includes(searchInput)
+                  ) {
+                    return true;
+                  }
                 }
               }
             }
