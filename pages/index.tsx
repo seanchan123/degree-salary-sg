@@ -1,5 +1,5 @@
-import Head from "next/head";
-import { Bar, Scatter } from "react-chartjs-2";
+import Head from 'next/head';
+import { Bar, Scatter } from 'react-chartjs-2';
 import {
   Chart,
   CategoryScale,
@@ -9,9 +9,8 @@ import {
   LineElement,
   Tooltip as ChartTooltip,
   Legend,
-} from "chart.js";
-
-import { useState, useEffect, useRef, MutableRefObject } from "react";
+} from 'chart.js';
+import { useState, useEffect, useRef, MutableRefObject } from 'react';
 import {
   Navbar,
   MobileNav,
@@ -67,27 +66,27 @@ type dataStore = {
 const colors: string[][] = [
   // Color Scheme #0 (Default - Shade of Primary Color)
   [
-    "rgba(25, 69, 105, 1)",
-    "rgba(95, 132, 162, 1)",
-    "rgba(145, 174, 196, 1)",
-    "rgba(183, 208, 225, 1)",
-    "rgba(202, 222, 237, 1)",
-    "rgba(219, 236, 244, 1)",
+    'rgba(25, 69, 105, 1)',
+    'rgba(95, 132, 162, 1)',
+    'rgba(145, 174, 196, 1)',
+    'rgba(183, 208, 225, 1)',
+    'rgba(202, 222, 237, 1)',
+    'rgba(219, 236, 244, 1)',
   ],
   // Color Scheme #1 (Distinct - Rainbow)
   [
-    "rgba(230, 25, 27, 1)",
-    "rgba(245, 130, 49, 1)",
-    "rgba(255, 225, 25, 1)",
-    "rgba(60, 180, 75, 1)",
-    "rgba(66, 99, 216, 1)",
-    "rgba(240, 50, 230, 1)",
+    'rgba(230, 25, 27, 1)',
+    'rgba(245, 130, 49, 1)',
+    'rgba(255, 225, 25, 1)',
+    'rgba(60, 180, 75, 1)',
+    'rgba(66, 99, 216, 1)',
+    'rgba(240, 50, 230, 1)',
   ],
 ];
 const primaryButtonColor: string =
-  "from-primary to-primary shadow-primary/40 hover:shadow-lg hover:shadow-primary/40";
+  'from-primary to-primary shadow-primary/40 hover:shadow-lg hover:shadow-primary/40';
 const secondaryButtonColor: string =
-  "from-white to-white hover:from-gray-200 hover:to-gray-200 shadow-gray-400/10 hover:shadow-lg hover:shadow-gray-400/40 text-primary";
+  'from-white to-white hover:from-gray-200 hover:to-gray-200 shadow-gray-400/10 hover:shadow-lg hover:shadow-gray-400/40 text-primary';
 const timeout = (delay: number) => {
   return new Promise((res) => setTimeout(res, delay));
 };
@@ -105,7 +104,7 @@ export const getStaticProps = async () => {
   // Fetch latest data
   var latestData: dataStore = await (
     await fetch(
-      "https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=1&sort=year desc"
+      'https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=1&sort=year desc'
     )
   ).json();
 
@@ -113,7 +112,7 @@ export const getStaticProps = async () => {
   const totalRecords: number = latestData.result.total;
   var allData: dataStore = await (
     await fetch(
-      "https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=" +
+      'https://data.gov.sg/api/action/datastore_search?resource_id=3a60220a-80ae-4a63-afde-413f05328914&limit=' +
         totalRecords
     )
   ).json();
@@ -204,7 +203,7 @@ const Index = ({
   const [selectedUniversities, updateSelectedUniversities] = useState<string[]>(universities);
   useEffect(() => {
     window.addEventListener(
-      "resize",
+      'resize',
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
@@ -256,7 +255,7 @@ const Index = ({
           beforeTitle: (tooltipItem: any) => {
             const recordUniversity = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.university;
             const recordYear = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.year;
-            return (recordUniversity + ", " + recordYear);
+            return (recordUniversity + ', ' + recordYear);
           },
           title: (tooltipItem: any) => {
             const recordSchool = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.school;
@@ -272,28 +271,28 @@ const Index = ({
     scales: {
       x: {
         grid: {
-          color: darkMode ? "#747474" : "#E1E1E1",
+          color: darkMode ? '#747474' : '#E1E1E1',
         },
       },
       y: {
         grid: {
-          color: darkMode ? "#747474" : "#E1E1E1",
+          color: darkMode ? '#747474' : '#E1E1E1',
         },
       },
     },
   };
-  Chart.defaults.color = darkMode ? "#FFFFFF" : "#1F2937";
+  Chart.defaults.color = darkMode ? '#FFFFFF' : '#1F2937';
 
   // Miscellaneous Variables
   const chartRef: MutableRefObject<null> = useRef(null);
   const navigationItems: { name: string; href: string; target?: string }[] = [
-    { name: "Pages", href: "#" },
-    { name: "Account", href: "#" },
-    { name: "Blocks", href: "#" },
+    { name: 'Pages', href: '#' },
+    { name: 'Account', href: '#' },
+    { name: 'Blocks', href: '#' },
     {
-      name: "Source",
-      href: "https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd",
-      target: "_blank",
+      name: 'Source',
+      href: 'https://data.gov.sg/dataset/graduate-employment-survey-ntu-nus-sit-smu-suss-sutd',
+      target: '_blank',
     },
   ];
 
@@ -312,29 +311,29 @@ const Index = ({
     const base64Image = chartRef.current.toBase64Image();
 
     fetch(base64Image, {
-      method: "GET",
+      method: 'GET',
       headers: {},
     })
       .then((response) => {
         response.arrayBuffer().then(function (buffer) {
-          const fileType = ".png";
+          const fileType = '.png';
           const timestamp = Date.now();
           const fileName =
-            "DSSG " +
-            new Intl.DateTimeFormat("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
+            'DSSG ' +
+            new Intl.DateTimeFormat('en-US', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
             }).format(timestamp) +
             fileType;
 
           const url = window.URL.createObjectURL(new Blob([buffer]));
-          const link = document.createElement("a");
+          const link = document.createElement('a');
           link.href = url;
-          link.setAttribute("download", fileName); //or any other extension
+          link.setAttribute('download', fileName); //or any other extension
           document.body.appendChild(link);
           link.click();
         });
@@ -374,9 +373,9 @@ const Index = ({
     <>
       <Head>
         <title>Degree Salary SG</title>
-        <meta name="description" content="Graduate Employment Survey w/ data.gov.sg API" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='description' content='Graduate Employment Survey w/ data.gov.sg API' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <main
         className={`h-screen transition ${
@@ -392,30 +391,30 @@ const Index = ({
           }`}
         >
           {/* Navigation Bar (Desktop) */}
-          <div className="mx-auto flex items-center justify-between text-blue-gray-900">
+          <div className='mx-auto flex items-center justify-between text-blue-gray-900'>
             {/* Degree Salary SG Logo */}
             <Typography
-              as="a"
-              href="#"
-              variant="small"
+              as='a'
+              href='#'
+              variant='small'
               className={`mr-4 cursor-pointer py-1.5 font-normal text-primary ${
                 darkMode ? `text-white` : `text-primary`
               }`}
             >
               <b>
-                Degree Salary <span className="text-red-400">SG</span>
+                Degree Salary <span className='text-red-400'>SG</span>
               </b>
             </Typography>
             {/* Navigation Items (Desktop) */}
-            <div className="hidden lg:block">
-              <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+            <div className='hidden lg:block'>
+              <ul className='mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6'>
                 {navigationItems.map((navigationItem) => {
                   return (
                     <Typography
-                      as="li"
-                      variant="small"
+                      as='li'
+                      variant='small'
                       key={navigationItem.name}
-                      className="p-1 font-normal"
+                      className='p-1 font-normal'
                     >
                       <a
                         href={navigationItem.href}
@@ -434,7 +433,7 @@ const Index = ({
               </ul>
             </div>
             {/* Toggle Dark Mode (Desktop) */}
-            <div className="hidden lg:block">
+            <div className='hidden lg:block'>
               <div
                 className={`mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-3 cursor-pointer`}
                 onClick={() => {
@@ -449,7 +448,7 @@ const Index = ({
                   }`}
                 >{`${darkMode ? `Dark` : `Light`} Mode`}</span>
                 <Switch
-                  color="blue-gray"
+                  color='blue-gray'
                   className={`${
                     darkMode ? secondaryButtonColor : primaryButtonColor
                   }`}
@@ -465,56 +464,56 @@ const Index = ({
             </div>
             {/* Hamburger Button (Mobile/Tablet) */}
             <IconButton
-              variant="text"
-              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              variant='text'
+              className='ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden'
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
             >
               {openNav ? (
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  className="h-6 w-6"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  className='h-6 w-6'
+                  viewBox='0 0 24 24'
+                  stroke='currentColor'
                   color={darkMode ? `white` : ``}
                   strokeWidth={2}
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M6 18L18 6M6 6l12 12'
                   />
                 </svg>
               ) : (
                 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-6 w-6'
+                  fill='none'
+                  stroke='currentColor'
                   color={darkMode ? `white` : ``}
                   strokeWidth={2}
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M4 6h16M4 12h16M4 18h16'
                   />
                 </svg>
               )}
             </IconButton>
           </div>
           {/* Navigation Bar (Mobile/Tablet) */}
-          <MobileNav className="mx-0 w-full" open={openNav}>
+          <MobileNav className='mx-0 w-full' open={openNav}>
             {/* Navigation Items (Mobile/Tablet) */}
-            <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+            <ul className='mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6'>
               {navigationItems.map((navigationItem) => {
                 return (
                   <Typography
-                    as="li"
-                    variant="small"
+                    as='li'
+                    variant='small'
                     key={navigationItem.name}
-                    className="p-1 font-normal"
+                    className='p-1 font-normal'
                   >
                     <a
                       href={navigationItem.href}
@@ -534,8 +533,8 @@ const Index = ({
             {/* Dark Mode Button (Mobile/Tablet) */}
             <Tooltip content={`Change to ${darkMode ? `Light` : `Dark`} Mode`}>
               <Button
-                variant="gradient"
-                size="sm"
+                variant='gradient'
+                size='sm'
                 className={`mb-2 w-full ${
                   darkMode ? secondaryButtonColor : primaryButtonColor
                 }`}
@@ -556,21 +555,21 @@ const Index = ({
           }`}
         >
           {/* Title Group */}
-          {/* <h1 className="text-5xl font-bold mt-0 mb-6">Heading</h1>
-          <h3 className="text-3xl font-bold mb-8">Subeading</h3> */}
+          {/* <h1 className='text-5xl font-bold mt-0 mb-6'>Heading</h1>
+          <h3 className='text-3xl font-bold mb-8'>Subeading</h3> */}
 
           {/* ChartJS Filters */}
-          <div className="text-left translate-x-[10%] w-4/5">
+          <div className='text-left translate-x-[10%] w-4/5'>
             {/* Year */}
-            <div className="mb-5">
-              <h3 className="text-xl font-bold">Year of Survey</h3>
-              <div className="overflow-x-auto w-full gap-2 whitespace-nowrap">
+            <div className='mb-5'>
+              <h3 className='text-xl font-bold'>Year of Survey</h3>
+              <div className='overflow-x-auto w-full gap-2 whitespace-nowrap'>
                 {years.map((year, index) => {
                   return (
                     <Button
-                      size="sm"
+                      size='sm'
                       key={year}
-                      variant="gradient"
+                      variant='gradient'
                       className={`w-28 mx-2 my-3 ${
                         selectedYears.includes(year)
                           ? darkMode
@@ -589,15 +588,15 @@ const Index = ({
               </div>
             </div>
             {/* University */}
-            <div className="mb-5">
-              <h3 className="text-xl font-bold">University</h3>
-              <div className="overflow-x-auto w-full gap-2 whitespace-nowrap">
+            <div className='mb-5'>
+              <h3 className='text-xl font-bold'>University</h3>
+              <div className='overflow-x-auto w-full gap-2 whitespace-nowrap'>
                 {universities.map((university, index) => {
                   return (
                     <Button
-                      size="sm"
+                      size='sm'
                       key={university}
-                      variant="gradient"
+                      variant='gradient'
                       className={`mx-2 my-2 ${
                         selectedUniversities.includes(university)
                           ? darkMode
@@ -623,19 +622,19 @@ const Index = ({
               darkMode ? `text-white` : `text-gray-800`
             }`}
           >
-            <div className="w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2">
+            <div className='w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2'>
               {/* <Bar data={chartData} ref={chartRef} options={chartOptions} /> */}
               <Scatter data={chartData} ref={chartRef} options={chartOptions} />
             </div>
           </div>
 
           {/* ChartJS Action Buttons */}
-          <div className="mt-10">
+          <div className='mt-10'>
             {/* Download Button */}
-            <Tooltip content="Download Image File (.png)">
+            <Tooltip content='Download Image File (.png)'>
               <Button
-                variant="gradient"
-                size="sm"
+                variant='gradient'
+                size='sm'
                 className={`w-28 mx-3 ${
                   darkMode ? secondaryButtonColor : primaryButtonColor
                 }`}
@@ -645,10 +644,10 @@ const Index = ({
               </Button>
             </Tooltip>
             {/* Copy to Clipboard Button */}
-            <Tooltip content="Copy link to Clipboard">
+            <Tooltip content='Copy link to Clipboard'>
               <Button
-                variant="gradient"
-                size="sm"
+                variant='gradient'
+                size='sm'
                 className={`w-28 mx-3 lg:inline-block ${
                   darkMode ? secondaryButtonColor : primaryButtonColor
                 }`}
