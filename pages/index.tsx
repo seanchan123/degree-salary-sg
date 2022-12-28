@@ -19,7 +19,7 @@ import {
   Switch,
   Button,
   IconButton
-} from "@material-tailwind/react";
+} from '@material-tailwind/react';
 
 Chart.register(
   CategoryScale,
@@ -198,6 +198,7 @@ const Index = ({
   // Hooks & Functions
   const [openNav, setOpenNav] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
   const [copiedRecent, setCopiedRecent] = useState(false);
   const [selectedYears, updateSelectedYears] = useState<string[]>(years);
   const [selectedUniversities, updateSelectedUniversities] = useState<string[]>(universities);
@@ -344,6 +345,9 @@ const Index = ({
   };
 
   // Filter Chart Functions
+  const updateSearch = (input: string) => {
+    setSearchInput(input);
+  };
   const updateYearFilter = (index: number) => {
     if (selectedYears.includes(years[index])) {
       var tempArr = [...selectedYears];
