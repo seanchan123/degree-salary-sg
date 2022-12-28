@@ -317,6 +317,8 @@ const Index = ({
     })
       .then((response) => {
         response.arrayBuffer().then(function (buffer) {
+          const fileType = ".png";
+          const timestamp = Date.now();
           const url = window.URL.createObjectURL(new Blob([buffer]));
           const link = document.createElement("a");
           link.href = url;
