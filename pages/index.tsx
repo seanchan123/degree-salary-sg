@@ -670,6 +670,31 @@ const Index = ({
             </div>
           </div>
 
+          {/* ChartJS Axis */}
+          <div
+            className={`w-screen flex justify-center ${
+              darkMode ? `text-white` : `text-gray-800`
+            }`}
+          >
+            <div className='w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2 gap-4'>
+              <Select label='Select Version' className='w-1/2'>
+                <Option>Material Tailwind HTML</Option>
+                <Option>Material Tailwind React</Option>
+                <Option>Material Tailwind Vue</Option>
+                <Option>Material Tailwind Angular</Option>
+                <Option>Material Tailwind Svelte</Option>
+              </Select>
+              <h3 className='text-xl font-bold'>/</h3>
+              <Select label='Select Version'>
+                <Option>Material Tailwind HTML</Option>
+                <Option>Material Tailwind React</Option>
+                <Option>Material Tailwind Vue</Option>
+                <Option>Material Tailwind Angular</Option>
+                <Option>Material Tailwind Svelte</Option>
+              </Select>
+            </div>
+          </div>
+
           {/* ChartJS Display */}
           <div
             className={`w-screen flex justify-center items-center ${
