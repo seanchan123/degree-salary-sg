@@ -18,7 +18,9 @@ import {
   Tooltip,
   Switch,
   Button,
-  IconButton
+  IconButton,
+  Select,
+  Option
 } from '@material-tailwind/react';
 
 Chart.register(
