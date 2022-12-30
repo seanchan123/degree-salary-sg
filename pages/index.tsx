@@ -159,8 +159,6 @@ export const getStaticProps = async () => {
       #11:  gross_mthly_25_percentile
       #12:  gross_mthly_75_percentile
   */
-  fields.push(allData.result.fields[1].id);
-  fields.push(allData.result.fields[2].id);
   fields.push(allData.result.fields[5].id);
   fields.push(allData.result.fields[6].id);
   fields.push(allData.result.fields[7].id);
@@ -213,16 +211,14 @@ const Index = ({
 
   /*
       fields index values: 
-      #0:  year
-      #1:  university
-      #3:  employment_rate_overall
-      #4:  employment_rate_ft_perm
-      #5:  basic_monthly_mean
-      #6:  basic_monthly_median
-      #7:  gross_monthly_mean
-      #8:  gross_monthly_median
-      #8:  gross_mthly_25_percentile
-      #9:  gross_mthly_75_percentile
+      #0:  employment_rate_overall
+      #1:  employment_rate_ft_perm
+      #2:  basic_monthly_mean
+      #3:  basic_monthly_median
+      #4:  gross_monthly_mean
+      #5:  gross_monthly_median
+      #6:  gross_mthly_25_percentile
+      #7:  gross_mthly_75_percentile
   */
   const chartData = {
     datasets: universities.map((university) => {
