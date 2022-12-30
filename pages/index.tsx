@@ -203,8 +203,7 @@ const Index = ({
   const [searchInput, setSearchInput] = useState('');
   const [copiedRecent, setCopiedRecent] = useState(false);
   const [selectedYears, updateSelectedYears] = useState<string[]>(years);
-  const [selectedUniversities, updateSelectedUniversities] =
-    useState<string[]>(universities);
+  const [selectedUniversities, updateSelectedUniversities] = useState<string[]>(universities);
   useEffect(() => {
     window.addEventListener(
       'resize',
@@ -595,7 +594,6 @@ const Index = ({
             {/* Search */}
             <div className="mb-5">
               <div className="w-full gap-2">
-                {/* <Textarea variant='static' placeholder='Search' className={'bg-white px-1'}/> */}
                 <form>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -692,7 +690,7 @@ const Index = ({
               darkMode ? `text-white` : `text-gray-800`
             }`}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 mb-5">
               <Select label="Select Version">
                 <Option>Material Tailwind HTML</Option>
                 <Option>Material Tailwind React</Option>
