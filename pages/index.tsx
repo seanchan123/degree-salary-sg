@@ -252,8 +252,8 @@ const Index = ({
           .map((record) => {
             return {
               // Plotted Points in ChartJS
-              x: record[fields[3] as keyof dataRecord],
-              y: record[fields[5] as keyof dataRecord],
+              x: record[fields[0] as keyof dataRecord],
+              y: record[fields[2] as keyof dataRecord],
               // Hidden values in ChartJS
               record: record,
             };
