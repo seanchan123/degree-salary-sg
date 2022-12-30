@@ -199,6 +199,8 @@ const Index = ({
   const [openNav, setOpenNav] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [searchInput, setSearchInput] = useState('');
+  const [verticalAxis, setVerticalAxis] = useState(2);
+  const [horizontalAxis, setHorizontalAxis] = useState(0);
   const [copiedRecent, setCopiedRecent] = useState(false);
   const [selectedYears, updateSelectedYears] = useState<string[]>(years);
   const [selectedUniversities, updateSelectedUniversities] = useState<string[]>(universities);
@@ -252,8 +254,8 @@ const Index = ({
           .map((record) => {
             return {
               // Plotted Points in ChartJS
-              x: record[fields[0] as keyof dataRecord],
-              y: record[fields[2] as keyof dataRecord],
+              x: record[fields[horizontalAxis] as keyof dataRecord],
+              y: record[fields[verticalAxis] as keyof dataRecord],
               // Hidden values in ChartJS
               record: record,
             };
@@ -392,6 +394,12 @@ const Index = ({
       updateSelectedUniversities(tempArr);
     }
   };
+  const updateVerticalAxis = (index: any) => {
+    setVerticalAxis(parseInt(index));
+  }
+  const updateHorizontalAxis = (index: any) => {
+    setHorizontalAxis(parseInt(index));
+  }
 
   return (
     <>
@@ -612,7 +620,7 @@ const Index = ({
                     <input
                       type="search"
                       id="default-search"
-                      className="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-400 focus:outline-none focus:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                      className="block w-full p-3 pl-10 text-sm text-gray-900 border font-medium  border-gray-400 focus:outline-none focus:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                       placeholder="Search Schools, Degrees..."
                       onChange={(event) => {
                         updateSearch(event.target.value);
@@ -687,19 +695,33 @@ const Index = ({
             }`}
           >
             <div className="flex items-center gap-4 mb-5">
-              <Select value={fields[0]} className="outline-none text-gray-900 font-medium block w-60 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500">
+              {/* Horizontal Axis */}
+              <Select
+                value="0"
+                onChange={updateHorizontalAxis}
+                className="outline-none text-gray-900 font-medium block w-60 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500"
+              >
                 {fields.map((field, index) => {
                   return (
-                    <Option key={field} value={field} className='text-gray-700'>{field}</Option>
-                  )
+                    <Option key={field} value={index.toString()} className="text-gray-700">
+                      {field}
+                    </Option>
+                  );
                 })}
               </Select>
               <h3 className="text-xl font-bold">/</h3>
-              <Select value={fields[2]} className="outline-none text-gray-900 font-medium  block w-60 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500">
+              {/* Vertical Axis */}
+              <Select
+                value="2"
+                onChange={updateVerticalAxis}
+                className="outline-none text-gray-900 font-medium  block w-60 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500"
+              >
                 {fields.map((field, index) => {
                   return (
-                    <Option key={field} value={field} className='text-gray-700'>{field}</Option>
-                  )
+                    <Option key={field} value={index.toString()} className="text-gray-700">
+                      {field}
+                    </Option>
+                  );
                 })}
               </Select>
             </div>
