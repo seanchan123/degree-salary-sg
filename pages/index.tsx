@@ -406,10 +406,10 @@ const Index = ({
   };
   const updateVerticalAxis = (index: any) => {
     setVerticalAxis(parseInt(index));
-  }
+  };
   const updateHorizontalAxis = (index: any) => {
     setHorizontalAxis(parseInt(index));
-  }
+  };
 
   return (
     <>
@@ -713,7 +713,11 @@ const Index = ({
               >
                 {fields.map((field, index) => {
                   return (
-                    <Option key={field} value={index.toString()} className="text-gray-700">
+                    <Option
+                      key={field}
+                      value={index.toString()}
+                      className="text-gray-700"
+                    >
                       {axisOptions[index]}
                     </Option>
                   );
@@ -728,7 +732,11 @@ const Index = ({
               >
                 {fields.map((field, index) => {
                   return (
-                    <Option key={field} value={index.toString()} className="text-gray-700">
+                    <Option
+                      key={field}
+                      value={index.toString()}
+                      className="text-gray-700"
+                    >
                       {axisOptions[index]}
                     </Option>
                   );
