@@ -65,6 +65,16 @@ type dataStore = {
 };
 
 // Miscellaneous variables/functions
+const axisOptions: string[] = [
+  'Employment Rate (Overall)',
+  'Employment Rate (FT/Perm)',
+  'Basic Monthly (Mean)',
+  'Basic Monthly (Median)',
+  'Gross Monthly (Mean)',
+  'Gross Monthly (Median)',
+  'Gross Monthly (25th Percentile)',
+  'Gross Monthly (75th Percentile)',
+];
 const colors: string[][] = [
   // Color Scheme #0 (Default - Shade of Primary Color)
   [
@@ -699,12 +709,12 @@ const Index = ({
               <Select
                 value="0"
                 onChange={updateHorizontalAxis}
-                className="outline-none text-gray-900 font-medium block w-60 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500"
+                className="outline-none text-gray-900 font-medium block w-64 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500"
               >
                 {fields.map((field, index) => {
                   return (
                     <Option key={field} value={index.toString()} className="text-gray-700">
-                      {field}
+                      {axisOptions[index]}
                     </Option>
                   );
                 })}
@@ -714,12 +724,12 @@ const Index = ({
               <Select
                 value="2"
                 onChange={updateVerticalAxis}
-                className="outline-none text-gray-900 font-medium  block w-60 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500"
+                className="outline-none text-gray-900 font-medium block w-64 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500"
               >
                 {fields.map((field, index) => {
                   return (
                     <Option key={field} value={index.toString()} className="text-gray-700">
-                      {field}
+                      {axisOptions[index]}
                     </Option>
                   );
                 })}
