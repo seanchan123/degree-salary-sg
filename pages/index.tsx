@@ -213,7 +213,8 @@ const Index = ({
   const [horizontalAxis, setHorizontalAxis] = useState(0);
   const [copiedRecent, setCopiedRecent] = useState(false);
   const [selectedYears, updateSelectedYears] = useState<string[]>(years);
-  const [selectedUniversities, updateSelectedUniversities] = useState<string[]>(universities);
+  const [selectedUniversities, updateSelectedUniversities] =
+    useState<string[]>(universities);
   useEffect(() => {
     window.addEventListener(
       'resize',
@@ -423,9 +424,7 @@ const Index = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main
-        className={`h-screen transition ${
-          darkMode ? `bg-[#0a1c2b]` : `bg-gray-100`
-        }`}
+        className={`transition ${darkMode ? `bg-[#0a1c2b]` : `bg-gray-100`}`}
       >
         {/* Navigation Bar */}
         <Navbar
