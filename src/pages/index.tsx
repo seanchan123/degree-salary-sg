@@ -22,7 +22,9 @@ import {
   Select,
   Option,
 } from '@material-tailwind/react';
-
+import type { dataStore, dataRecord } from '@/types';
+import { axisOptions, colors } from '@/constants';
+import { timeout } from '@/utils';
 Chart.register(
   CategoryScale,
   LinearScale,
@@ -33,75 +35,10 @@ Chart.register(
   Legend
 );
 
-type dataRecord = {
-  basic_monthly_mean: string;
-  basic_monthly_median: string;
-  degree: string;
-  employment_rate_ft_perm: string;
-  employment_rate_overall: string;
-  gross_monthly_mean: string;
-  gross_monthly_median: string;
-  gross_mthly_25_percentile: string;
-  gross_mthly_75_percentile: string;
-  school: string;
-  university: string;
-  year: string;
-  _id: number;
-};
-
-type dataStore = {
-  help: string;
-  result: {
-    fields: { type: string; id: string }[];
-    limit: number;
-    records: dataRecord[];
-    resource_id: string;
-    sort: string;
-    total: number;
-    _links: { next: string; start: string };
-  };
-  success: boolean;
-  year: number[];
-};
-
-// Miscellaneous variables/functions
-const axisOptions: string[] = [
-  'Employment Rate (Overall)',
-  'Employment Rate (FT/Perm)',
-  'Basic Monthly (Mean)',
-  'Basic Monthly (Median)',
-  'Gross Monthly (Mean)',
-  'Gross Monthly (Median)',
-  'Gross Monthly (25th Percentile)',
-  'Gross Monthly (75th Percentile)',
-];
-const colors: string[][] = [
-  // Color Scheme #0 (Default - Shade of Primary Color)
-  [
-    'rgba(25, 69, 105, 1)',
-    'rgba(95, 132, 162, 1)',
-    'rgba(145, 174, 196, 1)',
-    'rgba(183, 208, 225, 1)',
-    'rgba(202, 222, 237, 1)',
-    'rgba(219, 236, 244, 1)',
-  ],
-  // Color Scheme #1 (Distinct - Rainbow)
-  [
-    'rgba(230, 25, 27, 1)',
-    'rgba(245, 130, 49, 1)',
-    'rgba(255, 225, 25, 1)',
-    'rgba(60, 180, 75, 1)',
-    'rgba(66, 99, 216, 1)',
-    'rgba(240, 50, 230, 1)',
-  ],
-];
 const primaryButtonColor: string =
   'from-primary to-primary shadow-primary/40 hover:shadow-lg hover:shadow-primary/40';
 const secondaryButtonColor: string =
   'from-white to-white hover:from-gray-200 hover:to-gray-200 shadow-gray-400/10 hover:shadow-lg hover:shadow-gray-400/40 text-primary';
-const timeout = (delay: number) => {
-  return new Promise((res) => setTimeout(res, delay));
-};
 
 export const getStaticProps = async () => {
   // Variables for filter
