@@ -20,7 +20,7 @@ import {
   Button,
   IconButton,
   Select,
-  Option
+  Option,
 } from '@material-tailwind/react';
 
 Chart.register(
@@ -203,7 +203,8 @@ const Index = ({
   const [searchInput, setSearchInput] = useState('');
   const [copiedRecent, setCopiedRecent] = useState(false);
   const [selectedYears, updateSelectedYears] = useState<string[]>(years);
-  const [selectedUniversities, updateSelectedUniversities] = useState<string[]>(universities);
+  const [selectedUniversities, updateSelectedUniversities] =
+    useState<string[]>(universities);
   useEffect(() => {
     window.addEventListener(
       'resize',
@@ -234,10 +235,18 @@ const Index = ({
               if (selectedYears.includes(record.year)) {
                 if (selectedUniversities.includes(record.university)) {
                   if (
-                    record.year.toLowerCase().includes(searchInput.toLowerCase()) ||
-                    record.university.toLowerCase().includes(searchInput.toLowerCase()) ||
-                    record.school.toLowerCase().includes(searchInput.toLowerCase()) ||
-                    record.degree.toLowerCase().includes(searchInput.toLowerCase())
+                    record.year
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase()) ||
+                    record.university
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase()) ||
+                    record.school
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase()) ||
+                    record.degree
+                      .toLowerCase()
+                      .includes(searchInput.toLowerCase())
                   ) {
                     return true;
                   }
@@ -251,7 +260,7 @@ const Index = ({
               x: record[fields[3] as keyof dataRecord],
               y: record[fields[5] as keyof dataRecord],
               // Hidden values in ChartJS
-              record: record
+              record: record,
             };
           }),
         backgroundColor: colors[0][universities.indexOf(university)],
@@ -263,20 +272,27 @@ const Index = ({
       tooltip: {
         callbacks: {
           beforeTitle: (tooltipItem: any) => {
-            const recordUniversity = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.university;
-            const recordYear = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.year;
-            return (recordUniversity + ', ' + recordYear);
+            const recordUniversity =
+              tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record
+                .university;
+            const recordYear =
+              tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.year;
+            return recordUniversity + ', ' + recordYear;
           },
           title: (tooltipItem: any) => {
-            const recordSchool = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.school;
-            return (recordSchool);
+            const recordSchool =
+              tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record
+                .school;
+            return recordSchool;
           },
           afterTitle: (tooltipItem: any) => {
-            const recordDegree = tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record.degree;
-            return (recordDegree);
+            const recordDegree =
+              tooltipItem[0].dataset.data[tooltipItem[0].dataIndex].record
+                .degree;
+            return recordDegree;
           },
-        }
-      }
+        },
+      },
     },
     scales: {
       x: {
@@ -387,11 +403,11 @@ const Index = ({
       <Head>
         <title>Degree Salary SG</title>
         <meta
-          name='description'
-          content='Graduate Employment Survey w/ data.gov.sg API'
+          name="description"
+          content="Graduate Employment Survey w/ data.gov.sg API"
         />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main
         className={`h-screen transition ${
@@ -407,30 +423,30 @@ const Index = ({
           }`}
         >
           {/* Navigation Bar (Desktop) */}
-          <div className='mx-auto flex items-center justify-between text-blue-gray-900'>
+          <div className="mx-auto flex items-center justify-between text-blue-gray-900">
             {/* Degree Salary SG Logo */}
             <Typography
-              as='a'
-              href='#'
-              variant='small'
+              as="a"
+              href="#"
+              variant="small"
               className={`mr-4 cursor-pointer py-1.5 font-normal text-primary ${
                 darkMode ? `text-white` : `text-primary`
               }`}
             >
               <b>
-                Degree Salary <span className='text-red-400'>SG</span>
+                Degree Salary <span className="text-red-400">SG</span>
               </b>
             </Typography>
             {/* Navigation Items (Desktop) */}
-            <div className='hidden lg:block'>
-              <ul className='mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6'>
+            <div className="hidden lg:block">
+              <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
                 {navigationItems.map((navigationItem) => {
                   return (
                     <Typography
-                      as='li'
-                      variant='small'
+                      as="li"
+                      variant="small"
                       key={navigationItem.name}
-                      className='p-1 font-normal'
+                      className="p-1 font-normal"
                     >
                       <a
                         href={navigationItem.href}
@@ -449,7 +465,7 @@ const Index = ({
               </ul>
             </div>
             {/* Toggle Dark Mode (Desktop) */}
-            <div className='hidden lg:block'>
+            <div className="hidden lg:block">
               <div
                 className={`mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-3 cursor-pointer`}
                 onClick={() => {
@@ -464,7 +480,7 @@ const Index = ({
                   }`}
                 >{`${darkMode ? `Dark` : `Light`} Mode`}</span>
                 <Switch
-                  color='blue-gray'
+                  color="blue-gray"
                   className={`${
                     darkMode ? secondaryButtonColor : primaryButtonColor
                   }`}
@@ -480,56 +496,56 @@ const Index = ({
             </div>
             {/* Hamburger Button (Mobile/Tablet) */}
             <IconButton
-              variant='text'
-              className='ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden'
+              variant="text"
+              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
             >
               {openNav ? (
                 <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  className='h-6 w-6'
-                  viewBox='0 0 24 24'
-                  stroke='currentColor'
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  className="h-6 w-6"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                   color={darkMode ? `white` : ``}
                   strokeWidth={2}
                 >
                   <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M6 18L18 6M6 6l12 12'
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
               ) : (
                 <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='h-6 w-6'
-                  fill='none'
-                  stroke='currentColor'
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
                   color={darkMode ? `white` : ``}
                   strokeWidth={2}
                 >
                   <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M4 6h16M4 12h16M4 18h16'
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
               )}
             </IconButton>
           </div>
           {/* Navigation Bar (Mobile/Tablet) */}
-          <MobileNav className='mx-0 w-full' open={openNav}>
+          <MobileNav className="mx-0 w-full" open={openNav}>
             {/* Navigation Items (Mobile/Tablet) */}
-            <ul className='mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6'>
+            <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
               {navigationItems.map((navigationItem) => {
                 return (
                   <Typography
-                    as='li'
-                    variant='small'
+                    as="li"
+                    variant="small"
                     key={navigationItem.name}
-                    className='p-1 font-normal'
+                    className="p-1 font-normal"
                   >
                     <a
                       href={navigationItem.href}
@@ -549,8 +565,8 @@ const Index = ({
             {/* Dark Mode Button (Mobile/Tablet) */}
             <Tooltip content={`Change to ${darkMode ? `Light` : `Dark`} Mode`}>
               <Button
-                variant='gradient'
-                size='sm'
+                variant="gradient"
+                size="sm"
                 className={`mb-2 w-full ${
                   darkMode ? secondaryButtonColor : primaryButtonColor
                 }`}
@@ -575,35 +591,35 @@ const Index = ({
           <h3 className='text-3xl font-bold mb-8'>Subeading</h3> */}
 
           {/* ChartJS Filters */}
-          <div className='text-left translate-x-[10%] w-4/5 mb-10'>
+          <div className="text-left translate-x-[10%] w-4/5 mb-10">
             {/* Search */}
-            <div className='mb-5'>
-              <div className='w-full gap-2'>
+            <div className="mb-5">
+              <div className="w-full gap-2">
                 {/* <Textarea variant='static' placeholder='Search' className={'bg-white px-1'}/> */}
                 <form>
-                  <div className='relative'>
-                    <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <svg
-                        aria-hidden='true'
-                        className='w-5 h-5 text-gray-500 dark:text-gray-400'
-                        fill='none'
-                        stroke='currentColor'
-                        viewBox='0 0 24 24'
-                        xmlns='http://www.w3.org/2000/svg'
+                        aria-hidden="true"
+                        className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeWidth='2'
-                          d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                         ></path>
                       </svg>
                     </div>
                     <input
-                      type='search'
-                      id='default-search'
-                      className='block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'
-                      placeholder='Search Schools, Degrees...'
+                      type="search"
+                      id="default-search"
+                      className="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                      placeholder="Search Schools, Degrees..."
                       onChange={(event) => {
                         updateSearch(event.target.value);
                       }}
@@ -613,15 +629,15 @@ const Index = ({
               </div>
             </div>
             {/* Year */}
-            <div className='mb-5'>
-              <h3 className='text-xl font-bold'>Year of Survey</h3>
-              <div className='overflow-x-auto w-full gap-2 whitespace-nowrap'>
+            <div className="mb-5">
+              <h3 className="text-xl font-bold">Year of Survey</h3>
+              <div className="overflow-x-auto w-full gap-2 whitespace-nowrap">
                 {years.map((year, index) => {
                   return (
                     <Button
-                      size='sm'
+                      size="sm"
                       key={year}
-                      variant='gradient'
+                      variant="gradient"
                       className={`w-24 mx-2 my-3 ${
                         selectedYears.includes(year)
                           ? darkMode
@@ -640,15 +656,15 @@ const Index = ({
               </div>
             </div>
             {/* University */}
-            <div className='mb-5'>
-              <h3 className='text-xl font-bold'>University</h3>
-              <div className='overflow-x-auto w-full gap-2 whitespace-nowrap'>
+            <div className="mb-5">
+              <h3 className="text-xl font-bold">University</h3>
+              <div className="overflow-x-auto w-full gap-2 whitespace-nowrap">
                 {universities.map((university, index) => {
                   return (
                     <Button
-                      size='sm'
+                      size="sm"
                       key={university}
-                      variant='gradient'
+                      variant="gradient"
                       className={`w-24 mx-2 my-2 ${
                         selectedUniversities.includes(university)
                           ? darkMode
@@ -676,16 +692,16 @@ const Index = ({
               darkMode ? `text-white` : `text-gray-800`
             }`}
           >
-            <div className='w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2 gap-4'>
-              <Select label='Select Version' className='w-1/2'>
+            <div className="flex items-center gap-4">
+              <Select label="Select Version">
                 <Option>Material Tailwind HTML</Option>
                 <Option>Material Tailwind React</Option>
                 <Option>Material Tailwind Vue</Option>
                 <Option>Material Tailwind Angular</Option>
                 <Option>Material Tailwind Svelte</Option>
               </Select>
-              <h3 className='text-xl font-bold'>/</h3>
-              <Select label='Select Version'>
+              <h3 className="text-xl font-bold">/</h3>
+              <Select label="Select Version">
                 <Option>Material Tailwind HTML</Option>
                 <Option>Material Tailwind React</Option>
                 <Option>Material Tailwind Vue</Option>
@@ -701,19 +717,19 @@ const Index = ({
               darkMode ? `text-white` : `text-gray-800`
             }`}
           >
-            <div className='w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2'>
+            <div className="w-5/6 lg:w-4/5 xl:w-3/5 2xl:w-1/2">
               {/* <Bar data={chartData} ref={chartRef} options={chartOptions} /> */}
               <Scatter data={chartData} ref={chartRef} options={chartOptions} />
             </div>
           </div>
 
           {/* ChartJS Action Buttons */}
-          <div className='mt-5'>
+          <div className="mt-5">
             {/* Download Button */}
-            <Tooltip content='Download Image File (.png)'>
+            <Tooltip content="Download Image File (.png)">
               <Button
-                variant='gradient'
-                size='sm'
+                variant="gradient"
+                size="sm"
                 className={`w-28 mx-3 ${
                   darkMode ? secondaryButtonColor : primaryButtonColor
                 }`}
@@ -723,10 +739,10 @@ const Index = ({
               </Button>
             </Tooltip>
             {/* Copy to Clipboard Button */}
-            <Tooltip content='Copy link to Clipboard'>
+            <Tooltip content="Copy link to Clipboard">
               <Button
-                variant='gradient'
-                size='sm'
+                variant="gradient"
+                size="sm"
                 className={`w-28 mx-3 lg:inline-block ${
                   darkMode ? secondaryButtonColor : primaryButtonColor
                 }`}
