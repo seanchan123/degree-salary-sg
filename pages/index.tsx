@@ -687,18 +687,18 @@ const Index = ({
             }`}
           >
             <div className="flex items-center gap-4 mb-5">
-              <Select value={fields[0]} className="outline-none block w-60 p-3 pl-10 text-sm text-gray-900 focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500">
+              <Select value={fields[0]} className="outline-none text-gray-900 font-medium block w-60 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500">
                 {fields.map((field, index) => {
                   return (
-                    <Option key={field} value={field}>{field}</Option>
+                    <Option key={field} value={field} className='text-gray-700'>{field}</Option>
                   )
                 })}
               </Select>
               <h3 className="text-xl font-bold">/</h3>
-              <Select value={fields[2]} className="outline-none block w-60 p-3 pl-10 text-sm text-gray-900 focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500">
+              <Select value={fields[2]} className="outline-none text-gray-900 font-medium  block w-60 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500">
                 {fields.map((field, index) => {
                   return (
-                    <Option key={field} value={field}>{field}</Option>
+                    <Option key={field} value={field} className='text-gray-700'>{field}</Option>
                   )
                 })}
               </Select>
