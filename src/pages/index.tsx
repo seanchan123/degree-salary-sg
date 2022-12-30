@@ -644,8 +644,9 @@ const Index = ({
               {/* Horizontal Axis */}
               <Select
                 value="0"
+                label="Chart x-axis"
                 onChange={updateHorizontalAxis}
-                className="outline-none text-gray-900 font-medium block w-64 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500"
+                className=" text-gray-900 font-medium block w-64 p-3 pl-10 text-sm rounded-lg bg-gray-50"
               >
                 {fields.map((field, index) => {
                   return (
@@ -663,8 +664,9 @@ const Index = ({
               {/* Vertical Axis */}
               <Select
                 value="2"
+                label="Chart y-axis"
                 onChange={updateVerticalAxis}
-                className="outline-none text-gray-900 font-medium block w-64 p-3 pl-10 text-sm focus:border-gray-600 rounded-lg bg-gray-50 before:outline-orange-500 after:outline-orange-500"
+                className=" text-gray-900 font-medium block w-64 p-3 pl-10 text-sm rounded-lg bg-gray-50"
               >
                 {fields.map((field, index) => {
                   return (
