@@ -594,7 +594,7 @@ const Index = ({
           <h3 className='text-3xl font-bold mb-8'>Subeading</h3> */}
 
           {/* ChartJS Filters */}
-          <div className="text-left translate-x-[10%] w-4/5 mb-10">
+          <div className="text-left translate-x-[10%] w-4/5 mb-8">
             {/* Search */}
             <div className="mb-5">
               <div className="w-full gap-2">
@@ -667,7 +667,7 @@ const Index = ({
                       size="sm"
                       key={university}
                       variant="gradient"
-                      className={`w-24 mx-2 my-2 ${
+                      className={`w-24 mx-2 my-3 ${
                         selectedUniversities.includes(university)
                           ? darkMode
                             ? secondaryButtonColor
