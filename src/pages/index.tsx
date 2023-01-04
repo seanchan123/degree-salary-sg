@@ -236,6 +236,15 @@ const Index = ({
                 .degree;
             return recordDegree;
           },
+          label: (tooltipItem: any) => {
+            const recordUniversity =
+              tooltipItem.dataset.data[tooltipItem.dataIndex].record
+                .university.replace(/[a-z]/g, '').replace(/ /g, '');
+            const recordDegree =
+              tooltipItem.dataset.data[tooltipItem.dataIndex].record
+                .degree;
+            return recordUniversity + ', ' + recordDegree + ': ' + tooltipItem.formattedValue;
+          }
         },
       },
     },
