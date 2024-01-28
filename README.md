@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## ![image](https://github.com/seanchan123/degree-salary-sg/assets/60666738/de4bd093-3c5c-4b94-9b8e-b7a056950417)
 
-## Getting Started
+**[Degree Salary SG](https://degree-salary-sg.vercel.app/)** is a data visualization of Singapore's Graduate Employment Survey (GES) for all universities from 2013 onwards!
 
-First, run the development server:
+This project was created as there was no effective visualization tool that could compare between the degree programmes of each university. Alternatives found when Googling often depicts the data represented in a table format, or in other forms, which limits the effectiveness when comparing between the degree programmes. Conversely, those that are able to compare, often lacks all the autonomous universities in Singapore - therefore resulting in a restricted point of view for the users.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+***Preview***
+![image](https://github.com/seanchan123/degree-salary-sg/assets/60666738/6ecb61c6-3108-4046-8137-f224263d4cb7)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A preview of the website can be found [here](https://degree-salary-sg.vercel.app/). This release is not from the latest commit.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Users are able to **filter** and **search** between the year, the university and the degree programme against any 2 chosen axis:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Employment Rate (Overall)
+- Employment Rate (Full Time/Permanent)
+- Basic Monthly (Mean)
+- Basic Monthly (Median)
+- Gross Monthly (Mean)
+- Gross Monthly (Median)
+- Gross Monthly (25th Percentile)
+- Gross Monthly (75th Percentile)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Last but not least, users are able to download and share their curated chart!
 
-## Learn More
+## Dataset
 
-To learn more about Next.js, take a look at the following resources:
+![image](https://d33wubrfki0l68.cloudfront.net/7b7e8b84b8180770131a2838266cc18409b22293/545c3/images/logo_govtech_hort.gif)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Our dataset are retrieved from the API provided by Government Technology Agency's (Govtech Singapore) [Data.gov.sg](https://www.tech.gov.sg/products-and-services/data-gov-sg/).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This effort is not a collaborative effort with Govtech Singapore, the API is public and is free to be used by the public.
 
-## Deploy on Vercel
+Therefore, any misleading information found in the dataset falls under Govtech Singapore's responsibility.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## **Update as of 28/01/2024
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project was abandoned due to several reasons, as the dataset comes directly from [data.gov.sg](https://beta.data.gov.sg/datasets/d_3c55210de27fcccda2ed0c63fdd2b352/view):
+
+- Dataset has to be [requested](https://github.com/datagovsg/datagovsg-datasets/issues/1481) every few months
+  - Different universities has different GES release date
+  - Resulting in multiple issues raised per year
+- Project's viability is 100% dependent on the outcome of the request
+- Upon successful request, the dataset takes 2-3 months to come through
+
+From the aforementioned reasons, the website will therefore be out of date often.
+
+And therefore, would not be ideal to be a go-to website to visualize the GES data.
