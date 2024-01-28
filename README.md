@@ -1,6 +1,6 @@
 ## ![image](https://github.com/seanchan123/degree-salary-sg/assets/60666738/de4bd093-3c5c-4b94-9b8e-b7a056950417)
 
-**[Degree Salary SG](https://degree-salary-sg.vercel.app/)** is a data visualization of Singapore's Graduate Employment Survey (GES) for all universities from 2013 onwards!
+**[Degree Salary SG](https://degree-salary-sg.vercel.app/)** visualizes Singapore's Graduate Employment Survey (GES) for all universities from 2013 onwards!
 
 This project was created as there was no effective visualization tool that could compare between the degree programmes of each university. Alternatives found when Googling often depicts the data represented in a table format, or in other forms, which limits the effectiveness when comparing between the degree programmes. Conversely, those that are able to compare, often lacks all the autonomous universities in Singapore - therefore resulting in a restricted point of view for the users.
 
