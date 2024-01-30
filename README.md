@@ -7,7 +7,7 @@ This project was created as there was no effective visualization tool that could
 ***Preview***
 ![image](https://github.com/seanchan123/degree-salary-sg/assets/60666738/6ecb61c6-3108-4046-8137-f224263d4cb7)
 
-A preview of the website can be found [here](https://degree-salary-sg-ochre.vercel.app/). This release is not from the latest commit.
+A preview of the website can be found [here](https://degree-salary-sg-ochre.vercel.app/).
 
 Users are able to **filter** and **search** between the year, the university and the degree programme against any 2 chosen axis:
 
